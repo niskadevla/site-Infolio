@@ -1,0 +1,72 @@
+.form-services {
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  box-shadow: 4px 4px 7px 3px #dadada;
+  border-radius: 5px;
+  background-color: #ebebeb;
+}
+
+.form-services_title,
+.table-services_title {
+  text-align: center;
+  border-bottom: 1px groove #bbb;
+  padding-bottom: 0.5rem;
+}
+
+.form-services .row {
+  align-items: center;
+}
+
+.form-services p {
+  text-align: center;
+}
+
+/* .form-services label {
+  line-height: 1.5;
+} */
+
+.form-services label[class*="col-12"] {
+  font-size: 0.9;
+  font-style: italic;
+  color: #666666;
+}
+
+.form-services_label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+}
+
+.form-services_percent {
+  width: 50px;
+  cursor: pointer;
+}
+
+.form-services_percent:hover,
+.form-services_percent:active {
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transform-origin: right;
+  transform: scale(3);
+}
+
+
+.form-services_notification {
+  font-style: italic;
+  font-size: 0.8rem;
+  min-height: 1px;
+  width: 100%;
+  text-align: left;
+}
+
+.table-services {
+  padding: 10px;
+}

@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www.infolio.top$ [NC]
+RewriteRule ^(.*)$ http://infolio.top/$1 [R=301,L]

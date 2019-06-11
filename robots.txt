@@ -1,0 +1,14 @@
+User-agent:Yandex
+#DisalloW:/js/
+#DisalloW:/css/
+DisalloW:/json/
+Disallow:/cgi-bin
+Host:infolio.top
+Sitemap:http://infolio.top/sitemap.xml
+
+User-agent:*
+#DisalloW:/js/
+#DisalloW:/css/
+DisalloW:/json/
+Disallow:/cgi-bin
+Sitemap:http://infolio.top/sitemap.xml
