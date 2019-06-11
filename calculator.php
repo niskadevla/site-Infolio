@@ -28,6 +28,7 @@
                     <option value="" selected></option>
                     <option value="2">Распечатка</option>
                     <option value="3">Сканирование</option>
+                    <option value="4">Ксерокс</option>
                   </select>
                 </div>
               </div> -->
@@ -36,6 +37,9 @@
                 <select class="form-control" name="">
                   <option value="1">1.1</option>
                   <option value="2">1.2</option>
+                  <option value="3">1.3</option>
+                  <option value="4">1.4</option>
+                  <option value="5">1.5</option>
                 </select>
               </div>
 
