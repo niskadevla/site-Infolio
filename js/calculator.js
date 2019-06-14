@@ -5,6 +5,7 @@
 let formServices = document.getElementById("formServices");
 let formServicesInner = formServices.querySelector(".form-services_inner");
 let totalSum = document.getElementById('totalSum').querySelector('span');
+let totalSumDiscounted = document.getElementById('totalSum').querySelectorAll('span')[1];
 
 // nameServices - [Object] - Наименование услуги и формат(размер)
 // pageSizes - [Object] -Объект размеров (формата носителя)
@@ -740,16 +741,16 @@ nameServices = {
                                 "Ч/б": {
                                     // Цвет поверхности
                                     "Белая": {
-                                      "текст": (20 + 11),
-                                      "с картинками": (50 + 11)
+                                      "текст": (20 + 14),
+                                      "с картинками": (50 + 14)
                                     }
                                 },
                                 // Цвет печати
                                 "Цветная": {
                                   // Цвет поверхности
                                   "Белая": {
-                                    "текст": (60 + 11),
-                                    "с картинками": (100 + 11)
+                                    "текст": (60 + 14),
+                                    "с картинками": (100 + 14)
                                   }
                                 }
                             }
@@ -883,6 +884,7 @@ nameServices = {
                     }
                   },
 
+
                   "Сканирование": {
                     "А4 (21х30) см": {
                       //Тип бумаги
@@ -908,6 +910,7 @@ nameServices = {
                     "А0 (84х119) см": {},
                     "А0++ (91х119) см": {}
                   },
+
 
                   "Ксерокс": {
                     "А4 (21х30) см": {
@@ -1089,7 +1092,8 @@ nameServices = {
                             "Цветная": {
                               // Цвет поверхности
                               "Белая": {
-                                "с картинками": (20 + 20)
+                                // Печать + бумага + скан
+                                "с картинками": (20 + 20 + 15)
                               }
                             }
                           },
@@ -1099,7 +1103,8 @@ nameServices = {
                             "Цветная": {
                               // Цвет поверхности
                               "Белая": {
-                                "с картинками": (20 + 22)
+                                // Печать + бумага + скан
+                                "с картинками": (20 + 22 + 15)
                               }
                             }
                           }
@@ -1111,7 +1116,8 @@ nameServices = {
                             "Цветная": {
                               // Цвет поверхности
                               "Белая": {
-                                "с картинками": (20 + 26)
+                                // Печать + бумага + скан
+                                "с картинками": (20 + 26 + 15)
                               }
                             }
                           },
@@ -1121,7 +1127,8 @@ nameServices = {
                             "Цветная": {
                               // Цвет поверхности
                               "Белая": {
-                                "с картинками": (20 + 28)
+                                // Печать + бумага + скан
+                                "с картинками": (20 + 28 + 15)
                               }
                             }
                           }
@@ -1129,20 +1136,195 @@ nameServices = {
                       }
                     },
 
-                    "А2 (42х60) см": {},
-                    "А1 (60х84) см": {},
-                    "А0 (84х119) см": {},
-                    "А0++ (91х119) см": {}
+                    "А2 (42х60) см": {
+                      // Тип бумаги
+                      "Простая": {
+                        // Плотнсоть
+                        "Тонкая(80г/м2)": {
+                          //Тип прверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "текст": (10 + 7 + 25),
+                                "с картинками": (25 + 7 + 25)
+                              }
+                            },
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "с картинками": (50 + 7 + 40)
+                              }
+                            }
+                          }
+                        },
+                        "Плотная(150-190г/м2)": {
+                          // тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "текст": (10 + 13 + 25),
+                                "с картинками": (25 + 13 + 25)
+                              }
+                            },
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "с картинками": (50 + 13 + 40)
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "А1 (60х84) см": {
+                      // Тип бумаги
+                      "Простая": {
+                        // Плотнсоть
+                        "Тонкая(80г/м2)": {
+                          //Тип прверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "текст": (20 + 14 + 55),
+                                "с картинками": (50 + 14 + 55)
+                              }
+                            },
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "с картинками": (100 + 14 + 85)
+                              }
+                            }
+                          }
+                        },
+                        "Плотная(150-190г/м2)": {
+                          // тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "текст": (20 + 15 + 55),
+                                "с картинками": (50 + 15 + 55)
+                              }
+                            },
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Печать + бумага + скан
+                                "с картинками": (100 + 15 + 85)
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "А0 (84х119) см": {
+                      "": {},
+                      "можно частями": {}
+                    },
+
+                    "А0++ (91х119) см": {
+                      "": {},
+                      "можно частями": {}
+                    }
                   },
 
 
                   "Ризограф": {
-                    "А4 (21х30) см": {},
-                    "А3 (30х42) см": {},
-                    "А2 (42х60) см": {},
-                    "А1 (60х84) см": {},
-                    "А0 (84х119) см": {},
-                    "А0++ (91х119) см": {}
+                    "А4 (21х30) см": {
+                      // Тип бумаги
+                      "Простая": {
+                        // Плотнсоть
+                        "Тонкая(80г/м2)": {
+                          //Тип прверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                "с картинками": 2
+                              },
+                              // Цвет поверхности
+                              "Цветная": {
+                                // Печать + бумага
+                                "с картинками": (2 + 2)
+                              }
+                            }
+                          }
+                        },
+                        "Плотная(150-190г/м2)": {
+                          // тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                "с картинками": (2 + 3)
+                              },
+                              // Цвет поверхности
+                              "Цветная": {
+                                "с картинками": (2 + 4)
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "А3 (30х42) см": {
+                      // Тип бумаги
+                      "Простая": {
+                        // Плотнсоть
+                        "Тонкая(80г/м2)": {
+                          //Тип прверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                "с картинками": 4.5
+                              }
+                            }
+                          }
+                        },
+                        "Плотная(150-190г/м2)": {
+                          // тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                "с картинками": (4.5 + 6)
+                              },
+                              // Цвет поверхности
+                              "Цветная": {
+                                "с картинками": (4.5 + 8)
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
 
 
@@ -1649,7 +1831,7 @@ function insertFillPercents() {
   let percents;
   let label = "";
   let checked = "";
-  let src;
+  let src = "";
 
   percents = Object.keys(fillPercents);
 
@@ -1658,9 +1840,9 @@ function insertFillPercents() {
   }
 
   percents.forEach( (percent, item) => {
-    if (item === 0) {
+    if (item === 0 && percents.length > 1) {
       src = "../img/text.jpg";
-    } else if (item === 1) {
+    } else if (item === 1 && percents.length > 1) {
       src = "../img/text-s-kartinkoy.jpg";
     }
 
@@ -1756,9 +1938,16 @@ function changeQtyPage() {
 
 
 function insertQtyCopies() {
+  let minQty = 1;
+
+  if (selectService === "Ризограф") {
+    minQty = 10;
+    selectQtyCopy = minQty;
+  }
+
   let html = '<div class="form-group row">\
                  <label class="col-12 col-md-6" for="qtyCopy">Количество экземпляров (1 стр в количестве): </label>\
-                 <input type="number" class="col-12 col-md-6" id="qtyCopy" value="1" min="1">\
+                 <input type="number" class="col-12 col-md-6" id="qtyCopy" value="' + minQty + '" min="' + minQty + '">\
               </div>';
 
   formServicesInner.insertAdjacentHTML("beforeEnd", html);
@@ -1778,22 +1967,28 @@ function changeQtyCopy() {
 function insertPagesPerSheet() {
   let options = "";
   let paper;
+  // isPPS - если false, то несколько страниц на листе доступно,
+  // если true, то 1 стр на листе
   let isPPS = false;
   // let disabled = '<option value="" disabled selected> не выбрано </option>';
 
+  // При следующих условиях доступна опция "страниц на листе"
   if ( (selectSize === "А4 (21х30) см" || selectSize === "А3 (30х42) см")
     && (selectType === "Простая" || selectType === "Фотобумага" || selectType === "Самоклейка")
     && (selectService === "Распечатка") ) {
+    // Если ч/б печать, то берется с объекта pagesPerSheetForBlack количество стр на листе
     if (selectPrintColor === "Ч/б") {
       for (paper in pagesPerSheetForBlack) {
         options += '<option value="' + pagesPerSheetForBlack[paper] + '" ' + '>' + paper + '</option>';
       }
-    } else if (selectPrintColor === "Цветная") {
+    } // Если ч/цветная печать, то берется с объекта pagesPerSheetForColor количество стр на листе
+    else if (selectPrintColor === "Цветная") {
       for (paper in pagesPerSheetForColor) {
         options += '<option value="' + pagesPerSheetForColor[paper] + '" ' + '>' + paper + '</option>';
       }
     }
-  } else {
+  } // Если не совпало ни одно условие, то по умолчанию 1 стр на листе
+  else {
     isPPS = true;
     paper = Object.keys(pagesPerSheetForColor)[0];
     // disabled = "";
@@ -1813,6 +2008,7 @@ function insertPagesPerSheet() {
 
   let target = document.getElementById('pagePerSheet');
 
+  // В случае, если одна стр на листе, то автоматически запустить следующие функции
   if (isPPS) {
     changePagePerSheet();
     hiddenElement(target);
@@ -1833,37 +2029,59 @@ function changePagePerSheet() {
 
 function clearResult() {
   totalSum.innerHTML = 0;
+  totalSumDiscounted.innerHTML = "";
   selectQtyPage = 1;
   selectQtyCopy = 1;
   selectPagePerSheet = 1;
 }
 
+function isRizograf() {
+  // Проверка на ризограф ли это?
+  if ( (selectService === "Ксерокс" && selectQtyCopy > 99 && selectSize === "А4 (21х30) см"
+   && selectType === "Простая" && selectPrintColor === "Ч/б")
+   || (selectService === "Распечатка" && selectQtyCopy > 99 && selectSize === "А4 (21х30) см"
+   && selectType === "Простая" && selectPrintColor === "Ч/б")
+   || (selectService === "Ксерокс" && selectQtyCopy > 49 && selectSize === "А3 (30х42) см"
+   && selectType === "Простая" && selectPrintColor === "Ч/б")
+   || (selectService === "Распечатка" && selectQtyCopy > 49 && selectSize === "А3 (30х42) см"
+   && selectType === "Простая" && selectPrintColor === "Ч/б") ) {
+    alert('Сделайте просчет, выбрав опцию калькулятора, "Ризограф" \n Цена будет дешевле');
+  }
+}
+
 
 function recalc() {
-  // var price = 1.5;
-  var discount = 1;
-  var totalPages = 0;
+  // Очистить сумму
+  totalSum.innerHTML = 0;
+  totalSumDiscounted.innerHTML = "";
+
+  let discountOrigin = 1;
+  let discount = discountOrigin;
+  let totalPages = 0,
+      htmlTotalSum = 0,
+      htmlTotalSumDiscounted = 0;
+
   selectPagePerSheet = selectPagePerSheet || 1;
   totalPages = Math.ceil(selectQtyPage / selectPagePerSheet) * selectQtyCopy;
 
   // Условие для простой А4 ч/б печати
-  if (selectService === "Распечатка" && selectSize === "А4 (21х30) см" && selectType === "Простая" && selectPrintColor === "Ч/б") {
+  if (selectService === "Распечатка"
+      && selectSize === "А4 (21х30) см"
+      && selectType === "Простая"
+      && selectPrintColor === "Ч/б") {
     if (totalPages > 4 && totalPages < 200) {
        // 50 % скидка
        discount = (100 - 50) / 100;
     } else if (totalPages > 199 && totalPages < 1000) {
       // 66 % скидка
       discount = (100 - 66.6666) / 100;
-    } else if (totalPages > 999 & totalPages < 5000) {
+    } else if (totalPages > 999 && totalPages < 5000) {
       // 68 % скидка
       discount =(100 - 68.33333) / 100;
     } else if (totalPages > 4999) {
       // 68 % скидка
       discount = (100 - 70) / 100;
     }
-
-    totalSum.innerHTML = Math.round(totalPages * selectPrice   * discount * 10) / 10;
-
   }   // Условие для любой цветной печати
     else if (selectPrintColor === "Цветная") {
       if (totalPages > 9 && totalPages < 50) {
@@ -1872,7 +2090,7 @@ function recalc() {
       } else if (totalPages > 49 && totalPages < 100) {
         // 25 % скидка
         discount = (100 - 25) / 100;
-      } else if (totalPages > 99 & totalPages < 500) {
+      } else if (totalPages > 99 && totalPages < 500) {
         // 30 % скидка
         discount = (100 - 30) / 100;
       } else if (totalPages > 499 || selectQtyCopy > 99) {
@@ -1882,11 +2100,11 @@ function recalc() {
         // 45 % скидка
         discount = (100 - 45) / 100;
       }
-
-      totalSum.innerHTML = Math.round(totalPages * selectPrice * discount * 10) / 10;
-
   } // Условие для ч/б А3 печати
-    else if (selectService === "Распечатка" && selectSize === "А3 (30х42) см" && selectType === "Простая" && selectPrintColor === "Ч/б") {
+    else if (selectService === "Распечатка"
+             && selectSize === "А3 (30х42) см"
+             && selectType === "Простая"
+             && selectPrintColor === "Ч/б") {
       if (totalPages > 49 && totalPages < 100) {
          // 20 % скидка
          discount = (100 - 20) / 100;
@@ -1897,39 +2115,65 @@ function recalc() {
         // 52 % скидка
         discount = (100 - 52) / 100;
       }
-
-       totalSum.innerHTML = Math.round(totalPages * selectPrice   * discount * 10) / 10;
-
-    }// Условие для ч/б ксерокс А3
-      else if (selectService === "Распечатка" && selectSize === "А3 (30х42) см" && selectType === "Простая" && selectPrintColor === "Ч/б") {
-        if (totalPages > 49 && totalPages < 100) {
-           // 20 % скидка
-           discount = (100 - 20) / 100;
-        } else if (totalPages > 99 && totalPages < 500) {
-          // 25 % скидка
-          discount = (100 - 25) / 100;
-        } else if (totalPages > 499) {
-          // 30 % скидка
-          discount = (100 - 30) / 100;
+   }// Условие для ч/б ксерокс А3
+    else if (selectService === "Распечатка"
+             && selectSize === "А3 (30х42) см"
+             && selectType === "Простая"
+             && selectPrintColor === "Ч/б") {
+      if (totalPages > 49 && totalPages < 100) {
+         // 20 % скидка
+         discount = (100 - 20) / 100;
+      } else if (totalPages > 99 && totalPages < 500) {
+        // 25 % скидка
+        discount = (100 - 25) / 100;
+      } else if (totalPages > 499) {
+        // 30 % скидка
+        discount = (100 - 30) / 100;
+      }
+    }// Условие для ризографа ч/б
+      else if (selectService === "Ризограф") {
+        if (selectQtyCopy > 49 && selectQtyCopy < 100) {
+           // 25 % скидка
+           discount = (100 - 25) / 100;
+        } else if (selectQtyCopy > 99 && selectQtyCopy < 500) {
+          // 50 % скидка
+          discount = (100 - 50) / 100;
+        } else if (selectQtyCopy > 499 && selectQtyCopy < 1000) {
+          // 57.50 % скидка
+          discount =(100 - 57.5) / 100;
+        } else if (selectQtyCopy > 999 && selectQtyCopy < 3000) {
+          // 60 % скидка
+          discount = (100 - 60) / 100;
+        } else if (selectQtyCopy > 2999 && selectQtyCopy < 5000) {
+          // 65 % скидка
+          discount = (100 - 65) / 100;
+        } else if (selectQtyCopy > 4999 && selectQtyCopy < 10000) {
+          // 67.5 % скидка
+          discount = (100 - 67.5) / 100;
+        } else if (selectQtyCopy > 9999) {
+          // 70 % скидка
+          discount = (100 - 70) / 100;
         }
-
-         totalSum.innerHTML = Math.round(totalPages * selectPrice   * discount * 10) / 10;
       }
 
-    else {
-      totalSum.innerHTML = Math.round(totalPages * selectPrice   * discount * 10) / 10;
-    }
 
-   // Проверка на ризограф ли это?
-   if ( (selectService === "Ксерокс" && selectQtyCopy > 9 && selectSize === "А4 (21х30) см"
-    && selectType === "Простая" && selectPrintColor === "Ч/б")
-    || (selectService === "Распечатка" && selectQtyCopy > 99 && selectSize === "А4 (21х30) см"
-    && selectType === "Простая" && selectPrintColor === "Ч/б")
-    || (selectService === "Распечатка" && selectQtyCopy > 49 && selectSize === "А3 (30х42) см"
-    && selectType === "Простая" && selectPrintColor === "Ч/б") )
-     {
-     alert('Сделайте просчет, выбрав опцию калькулятора, "Ризограф" \n Цена будет дешевле');
+   // Формула просчета цены
+   htmlTotalSum = Math.round(totalPages * selectPrice * 10) / 10;
+   htmlTotalSumDiscounted = Math.round(totalPages * selectPrice * discount * 10) / 10;
+
+   // Какую цену вставить в HTML, со скидкой или нет
+   // Если со скидкой, то обе цены, чтоб первую перечеркнуть
+   if (discount === discountOrigin ) {
+     totalSum.innerHTML = htmlTotalSum;
+     totalSum.classList.remove("table-services__line-through");
+   } else {
+     totalSum.innerHTML = htmlTotalSum;
+     totalSum.classList.add("table-services__line-through");
+     totalSumDiscounted.innerHTML = htmlTotalSumDiscounted;
    }
+
+   // Если количество экземпляров попадает под раздел ризограф
+   isRizograf();
 
 }
 

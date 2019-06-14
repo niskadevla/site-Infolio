@@ -5,6 +5,7 @@
 
   require_once "included/header.php";
   require_once "included/sidebar.php";
+  include "included/options.php";
 ?>
 
 <article class="col-lg-9">
@@ -28,7 +29,6 @@
                     <option value="" selected></option>
                     <option value="2">Распечатка</option>
                     <option value="3">Сканирование</option>
-                    <option value="4">Ксерокс</option>
                   </select>
                 </div>
               </div> -->
@@ -37,9 +37,6 @@
                 <select class="form-control" name="">
                   <option value="1">1.1</option>
                   <option value="2">1.2</option>
-                  <option value="3">1.3</option>
-                  <option value="4">1.4</option>
-                  <option value="5">1.5</option>
                 </select>
               </div>
 
@@ -77,7 +74,7 @@
         <div class="table-services" id="tableServices">
           <h3 class="table-services_title">Результат просчета</h3>
           <p></p>
-          <p id="totalSum">Сумма заказа: <span>0</span> грн.</p>
+          <p id="totalSum">Сумма заказа: <span>0</span> <span class="table-services__bold"></span> <?=$currency?></p>
         </div>
       </div> <!-- -END- col-sm   -->
     </div>  <!-- -END- contentInner -->

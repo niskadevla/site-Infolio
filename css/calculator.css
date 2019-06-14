@@ -70,3 +70,22 @@
 .table-services {
   padding: 10px;
 }
+
+.table-services__line-through {
+  position: relative;
+  text-decoration: line-through;
+  text-decoration-style: double;
+}
+
+.table-services__bold {
+  font-weight: bold;
+  color: red;
+}
+/* .table-services__line-through::before {
+  content: "/";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+} */
