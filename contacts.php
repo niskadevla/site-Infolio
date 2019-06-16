@@ -18,13 +18,13 @@
         <div class="col-sm"> <!-- col-sm (Прайс печать)  -->
           <div class="itemBoxPage row">
             <div class="itemTitlePage">
-              <h2> Контакты копировального центра "Infolio" </h2>
+              <h2> Контакты </h2>
             </div>
 
             <div class="itemDescription">
               <p>
                 Адрес: г. Харьков, 61024, ул. Пушкинская 61,
-                вход во двор за кафе "Хантер", напротив "Французская булочная".
+                вход во двор за кафе "Хантер" напротив "Французская булочная".
               </p>
               <ul>
                 <li>тел.: (057)-764-44-12</li>
@@ -32,6 +32,22 @@
                 <li>Киевстар: (096)-189-96-93</li>
                 <li>Lifecell: (063)-029-61-13 (Telegram)</li>
               </ul>
+                <!-- <i class="fas fa-phone"></i>
+                <span>
+                  <a href="tel:057-764-44-12">(057)-764-44-12</a>
+                </span>
+                <i class="fas fa-mobile-alt"></i>
+                <span>
+                  <a href="tel:+38095-772-53-11">(095)-772-53-11</a>
+                </span>
+                <span>
+                  <a href="tel:+38096-189-96-93">(096)-189-96-93</a>
+                </span>
+                <span>
+                  <a href="tel:+38063-029-61-13">(063)-029-61-13</a>
+                </span> -->
+
+
             </div>
 
             <div class="itemImagePage">
