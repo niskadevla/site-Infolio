@@ -15,6 +15,7 @@ let totalSumDiscounted = document.getElementById('totalSum').querySelectorAll('s
 // printColors  - [Object] - Цвет печати
 // surfaceColors - [Object] - Цвет поверхности
 //fillPercents - [Object] - % заполнения чернилами (тонером) на бумаге
+// dpiQlts - [Onject] - Качество сканирования, dpi
 //pagesPerSheetForBlack
 //pagesPerSheetForColor
 
@@ -26,6 +27,7 @@ let nameServices,
     printColors,
     surfaceColors,
     fillPercents,
+    dpiQlts,
     pagesPerSheetForBlack,
     pagesPerSheetForColor;
 
@@ -50,6 +52,7 @@ let selectService,
    selectPrintColor,
    selectSurfaceColor,
    selectFillPercent,
+   selectDpiQlt,
    selectQtyPage = 1,
    selectQtyCopy = 1,
    selectPagePerSheet = 1,
@@ -897,18 +900,161 @@ nameServices = {
                             "Ч/б": {
                               // Цвет поверхности
                               "Белая": {
-                                "текст": 6
+                                // Качество сканирование, dpi
+                                "до 300": 6,
+                                "до 600": 8
+                              }
+                            },
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 7,
+                                "до 600": 10,
+                                "до 1200": 20,
+                                "до 2400": 50
                               }
                             }
                           }
                         }
                       }
                     },
-                    "А3 (30х42) см": {},
-                    "А2 (42х60) см": {},
-                    "А1 (60х84) см": {},
-                    "А0 (84х119) см": {},
-                    "А0++ (91х119) см": {}
+
+                    "А3 (30х42) см": {
+                      //Тип бумаги
+                      "Простая": {
+                        // Плотность
+                        "Тонкая(80г/м2)": {
+                          // Тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 12
+                              }
+                            },
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 15
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    
+                    "А2 (42х60) см": {
+                      //Тип бумаги
+                      "Простая": {
+                        // Плотность
+                        "Тонкая(80г/м2)": {
+                          // Тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 25
+                              }
+                            },
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 40
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "А1 (60х84) см": {
+                      //Тип бумаги
+                      "Простая": {
+                        // Плотность
+                        "Тонкая(80г/м2)": {
+                          // Тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 55
+                              }
+                            },
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 85
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "А0 (84х119) см": {
+                      //Тип бумаги
+                      "Простая": {
+                        // Плотность
+                        "Тонкая(80г/м2)": {
+                          // Тип поверхности
+                          "Простая": {
+                            // Цвет печати
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 130
+                              }
+                            },
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 200
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
+                    "B0 (1067х1414) см": {
+                      //Тип бумаги
+                      "Простая": {
+                        // Плотность
+                        "Тонкая(80г/м2)": {
+                          // Тип поверхности
+                          "Простая": {
+                            // Цвет сканирования
+                            "Ч/б": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 230
+                              }
+                            },
+                            // Цвет сканирования
+                            "Цветная": {
+                              // Цвет поверхности
+                              "Белая": {
+                                // Качество сканирование, dpi
+                                "до 300": 350
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
 
 
@@ -1378,6 +1524,7 @@ pagesPerSheetForColor = {
                     };
 
 
+
 function removeNextSiblingsAll(target) {
 
   let curentTarget;
@@ -1808,19 +1955,32 @@ function changeSurfaceColor() {
   selectSurfaceColor = target.value;
 
   if (!selectSurfaceColor) return;
+
   // Объект fillPercents, является ключом предыдещего объекта по иерархии
   fillPercents = surfaceColors[selectSurfaceColor];
+
+  if (selectService === "Сканирование") {
+    dpiQlts = surfaceColors[selectSurfaceColor];
+  }
 
   //Очищаем все при изменении услуги
   // Находим внешний блок, в кором произошло событие
   removeNextSiblingsAll(target);
   clearResult();
 
-  insertFillPercents();
+  if (selectService === "Сканирование") {
+    insertDpiQlts();
 
-  for (let i = 0; i < document.getElementsByName("fillPercent").length; i++) {
-    document.getElementsByName("fillPercent")[i].onchange = function() {
-      changeFillPercent();
+    document.getElementById("dpiQlt").onchange = function() {
+      changeDpiQlt();
+    }
+  } else {
+    insertFillPercents();
+
+    for (let i = 0; i < document.getElementsByName("fillPercent").length; i++) {
+      document.getElementsByName("fillPercent")[i].onchange = function() {
+        changeFillPercent();
+      }
     }
   }
 
@@ -1913,6 +2073,64 @@ function changeFillPercent() {
 
   recalc();
 
+}
+
+
+function insertDpiQlts() {
+  let options = "";
+  let dpi;
+  let disabled = "";
+
+  if (Object.keys(dpiQlts).length > 1) {
+    disabled = '<option value="" disabled selected> не выбрано </option>';
+  }
+
+  for (dpi in dpiQlts) {
+    options += '<option value="' + dpi + '" ' + '>' + dpi + '</option>'
+  }
+
+  let html = '<div class="form-group row">\
+                <label class="col-12 col-md-6"> Качество сканирования (dpi): </label>\
+                <div class="col-12 col-md-6">\
+                  <select id="dpiQlt" class="form-control">\
+                    ' + disabled + '\
+                    ' + options + '\
+                  </select>\
+                </div>\
+              </div>';
+
+  formServicesInner.insertAdjacentHTML("beforeEnd", html);
+
+  let target = document.getElementById('dpiQlt');
+
+  if (Object.keys(dpiQlts).length < 2) {
+    changeDpiQlt();
+    hiddenElement(target);
+  }
+}
+
+function changeDpiQlt() {
+  let select = document.getElementById("dpiQlt");
+  let target = select;
+
+  selectDpiQlt = target.value;
+
+  if (!selectDpiQlt) return;
+
+  selectPrice = dpiQlts[selectDpiQlt]
+
+  //Очищаем все при изменении услуги
+  // Находим внешний блок, в кором произошло событие
+  removeNextSiblingsAll(target);
+  clearResult();
+
+  insertQtyPages();
+
+  document.getElementById("qtyPage").onchange = function() {
+    changeQtyPage();
+  }
+
+  recalc();
 }
 
 
@@ -2062,6 +2280,7 @@ function recalc() {
       htmlTotalSumDiscounted = 0;
 
   selectPagePerSheet = selectPagePerSheet || 1;
+  selectQtyCopy = selectQtyCopy || 1;
   totalPages = Math.ceil(selectQtyPage / selectPagePerSheet) * selectQtyCopy;
 
   // Условие для простой А4 ч/б печати
@@ -2083,7 +2302,7 @@ function recalc() {
       discount = (100 - 70) / 100;
     }
   }   // Условие для любой цветной печати
-    else if (selectPrintColor === "Цветная") {
+    else if (selectPrintColor === "Цветная" && selectService !== "Сканирование") {
       if (totalPages > 9 && totalPages < 50) {
          // 20 % скидка
          discount = (100 - 20) / 100;
@@ -2096,11 +2315,13 @@ function recalc() {
       } else if (totalPages > 499 || selectQtyCopy > 99) {
         // 40 % скидка
         discount = (100 - 40) / 100;
-      } else if (selectQtyCopy > 499) {
+      }
+
+      if (selectQtyCopy > 499) {
         // 45 % скидка
         discount = (100 - 45) / 100;
       }
-  } // Условие для ч/б А3 печати
+    } // Условие для ч/б А3 печати
     else if (selectService === "Распечатка"
              && selectSize === "А3 (30х42) см"
              && selectType === "Простая"
@@ -2116,45 +2337,57 @@ function recalc() {
         discount = (100 - 52) / 100;
       }
    }// Условие для ч/б ксерокс А3
-    else if (selectService === "Распечатка"
-             && selectSize === "А3 (30х42) см"
-             && selectType === "Простая"
-             && selectPrintColor === "Ч/б") {
-      if (totalPages > 49 && totalPages < 100) {
-         // 20 % скидка
-         discount = (100 - 20) / 100;
-      } else if (totalPages > 99 && totalPages < 500) {
+   else if (selectService === "Распечатка"
+           && selectSize === "А3 (30х42) см"
+           && selectType === "Простая"
+           && selectPrintColor === "Ч/б") {
+     if (totalPages > 49 && totalPages < 100) {
+       // 20 % скидка
+       discount = (100 - 20) / 100;
+     } else if (totalPages > 99 && totalPages < 500) {
+      // 25 % скидка
+      discount = (100 - 25) / 100;
+     } else if (totalPages > 499) {
+      // 30 % скидка
+      discount = (100 - 30) / 100;
+     }
+   }// Условие для ризографа ч/б
+    else if (selectService === "Ризограф") {
+      if (selectQtyCopy > 49 && selectQtyCopy < 100) {
+         // 25 % скидка
+         discount = (100 - 25) / 100;
+      } else if (selectQtyCopy > 99 && selectQtyCopy < 500) {
+        // 50 % скидка
+        discount = (100 - 50) / 100;
+      } else if (selectQtyCopy > 499 && selectQtyCopy < 1000) {
+        // 57.50 % скидка
+        discount =(100 - 57.5) / 100;
+      } else if (selectQtyCopy > 999 && selectQtyCopy < 3000) {
+        // 60 % скидка
+        discount = (100 - 60) / 100;
+      } else if (selectQtyCopy > 2999 && selectQtyCopy < 5000) {
+        // 65 % скидка
+        discount = (100 - 65) / 100;
+      } else if (selectQtyCopy > 4999 && selectQtyCopy < 10000) {
+        // 67.5 % скидка
+        discount = (100 - 67.5) / 100;
+      } else if (selectQtyCopy > 9999) {
+        // 70 % скидка
+        discount = (100 - 70) / 100;
+      }
+    }// Условие для сканирования
+    else if (selectService === "Сканирование") {
+      if (totalPages > 9 && totalPages < 50) {
+         // 10 % скидка
+         discount = (100 - 10) / 100;
+      } else if (totalPages > 49 && totalPages < 100) {
+        // 20 % скидка
+        discount = (100 - 20) / 100;
+      } else if (totalPages > 99) {
         // 25 % скидка
-        discount = (100 - 25) / 100;
-      } else if (totalPages > 499) {
-        // 30 % скидка
-        discount = (100 - 30) / 100;
+        discount =(100 - 25) / 100;
       }
-    }// Условие для ризографа ч/б
-      else if (selectService === "Ризограф") {
-        if (selectQtyCopy > 49 && selectQtyCopy < 100) {
-           // 25 % скидка
-           discount = (100 - 25) / 100;
-        } else if (selectQtyCopy > 99 && selectQtyCopy < 500) {
-          // 50 % скидка
-          discount = (100 - 50) / 100;
-        } else if (selectQtyCopy > 499 && selectQtyCopy < 1000) {
-          // 57.50 % скидка
-          discount =(100 - 57.5) / 100;
-        } else if (selectQtyCopy > 999 && selectQtyCopy < 3000) {
-          // 60 % скидка
-          discount = (100 - 60) / 100;
-        } else if (selectQtyCopy > 2999 && selectQtyCopy < 5000) {
-          // 65 % скидка
-          discount = (100 - 65) / 100;
-        } else if (selectQtyCopy > 4999 && selectQtyCopy < 10000) {
-          // 67.5 % скидка
-          discount = (100 - 67.5) / 100;
-        } else if (selectQtyCopy > 9999) {
-          // 70 % скидка
-          discount = (100 - 70) / 100;
-        }
-      }
+    }
 
 
    // Формула просчета цены
