@@ -71,17 +71,17 @@
   padding: 10px;
 }
 
-.table-services__line-through {
+.table-services_total-sum {
   position: relative;
   text-decoration: line-through;
   text-decoration-style: double;
 }
 
-.table-services__bold {
+.table-service_total-sum-discounted {
   font-weight: bold;
   color: red;
 }
-/* .table-services__line-through::before {
+/* .table-services_total-sum::before {
   content: "/";
   position: absolute;
   top: 0;

@@ -18,7 +18,7 @@
       <div class="col-sm-6"> <!-- col-sm -->
         <div class="form-services" id="formServices">
 
-            <h3 class="form-services_title">Форма заказа</h3>
+            <h3 class="form-services_title">Форма заказов</h3>
 
             <div class="form-services_inner">
 
@@ -74,7 +74,7 @@
         <div class="table-services" id="tableServices">
           <h3 class="table-services_title">Результат просчета</h3>
           <p></p>
-          <p id="totalSum">Сумма заказа: <span>0</span> <span class="table-services__bold"></span> <?=$currency?></p>
+          <p id="totalSum">Сумма заказа: <span>0</span> <span class="table-service_total-sum-discounted"></span> <?=$currency?></p>
         </div>
       </div> <!-- -END- col-sm   -->
     </div>  <!-- -END- contentInner -->
