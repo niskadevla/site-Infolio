@@ -1044,6 +1044,15 @@ input.searchButton:hover {
   text-indent: 1rem;
 }
 
+.itemDescription ol li {
+  list-style-type: decimal;
+  margin-bottom: 0.5em;
+}
+
+.itemDescription ol li::first-line {
+  font-weight: bold;
+}
+
 
 
     /* -END- Контент для страничек  */
