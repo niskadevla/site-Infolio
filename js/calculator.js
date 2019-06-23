@@ -58,6 +58,26 @@ let selectService,
    selectPagePerSheet = 1,
    selectPrice = 0;
 
+var SPRING_BINDINGS_VALUES = [],
+      SPRING_BINDINGS_KEYS;
+
+const SPRING_BINDINGS = {
+  // Толщина переплета
+  "до 1мм (до 10 листов)" : 20,
+  "до 5мм (до 50 листов)" : 30,
+  "до 10мм (до 100 листов)" : 40,
+  "до 20мм (до 200 листов)" : 50,
+  "до 30мм (до 300 листов)" : 70,
+  "до 48мм (до 480 листов)" : 85
+}
+
+SPRING_BINDINGS_KEYS = Object.keys(SPRING_BINDINGS);
+
+for (var key in SPRING_BINDINGS) {
+   SPRING_BINDINGS_VALUES.push(SPRING_BINDINGS[key]);
+}
+
+
 // Наименование услуги и формат(размер)
 // Цена в скобках = цена печати + цена бумаги
 nameServices = {
@@ -1475,8 +1495,92 @@ nameServices = {
 
 
                   "Переплет": {
-                    "А5 (15х21) см": {},
+                    "А5 (15х21) см": {
+                      //Тип переплета
+                      "Под пластиковую пружину (брошюровка)": {
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[0]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[0]
+                              }
+                            }
+                          }
+                        },
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[1]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[1]
+                              }
+                            }
+                          }
+                        },
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[2]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[2]
+                              }
+                            }
+                          }
+                        },
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[3]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[3]
+                              }
+                            }
+                          }
+                        },
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[4]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[4]
+                              }
+                            }
+                          }
+                        },
+                        // Толщина переплета
+                        [SPRING_BINDINGS_KEYS[5]]: {
+                          // Тип обложки
+                          "Пластик": {
+                            //
+                            "*": {
+                              // Цвет обложки
+                              "Цветная": {
+                                "*": SPRING_BINDINGS_VALUES[5]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+
                     "А4 (21х30) см": {},
+
                     "А3 (30х42) см": {}
                   },
 
@@ -2325,6 +2429,7 @@ function recalc() {
   selectQtyCopy = selectQtyCopy || 1;
   totalPages = Math.ceil(selectQtyPage / selectPagePerSheet) * selectQtyCopy;
 
+  // Условия скидки
   // Условие для простой А4 ч/б печати
   if (selectService === "Распечатка"
       && selectSize === "А4 (21х30) см"
@@ -2359,7 +2464,8 @@ function recalc() {
         discount = (100 - 55) / 100;
       }
     }// Условие для любой цветной печати
-    else if (selectPrintColor === "Цветная" && selectService !== "Сканирование") {
+    else if ( (selectPrintColor === "Цветная" && selectService !== "Сканирование")
+             || selectService === "Переплет") {
       if (totalPages > 9 && totalPages < 50) {
          // 20 % скидка
          discount = (100 - 20) / 100;
@@ -2445,7 +2551,7 @@ function recalc() {
         discount =(100 - 25) / 100;
       }
     }
-
+    // -- *** ---
 
    // Формула просчета цены
    htmlTotalSum = Math.round(totalPages * selectPrice * 10) / 10;

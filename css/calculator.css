@@ -73,13 +73,23 @@
 
 .table-services_total-sum {
   position: relative;
-  text-decoration: line-through;
-  text-decoration-style: double;
+  /* text-decoration: line-through; */
+  /* text-decoration-style: double; */
+  font-size: .9rem;
+}
+.table-services_total-sum::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: 45%;
+  width: 115%;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+  transform: rotate(-25deg);
 }
 
 .table-service_total-sum-discounted {
   font-weight: bold;
-  color: red;
+  /* color: red; */
 }
 /* .table-services_total-sum::before {
   content: "/";
