@@ -155,21 +155,21 @@ rotateOrdinate
 	-ms-animation: rotateOrdinate 2s infinite;
 	animation: rotateOrdinate 2s infinite;
 
-	-webkit-animation-play-state: paused;
+	/* -webkit-animation-play-state: paused;
 	-moz-animation-play-state: paused;
 	-ms-animation-play-state: paused;
-	animation-play-state: paused;
+	animation-play-state: paused; */
 
 	visibility: visible !important;
 
 }
 
-.rotateOrdinate:hover {
+/* .rotateOrdinate:hover {
 	-webkit-animation-play-state: running;
  -moz-animation-play-state: running;
  -ms-animation-play-state: running;
 	animation-play-state: running;
-}
+} */
 
 @keyframes rotateOrdinate {
 	0%, 100% {
