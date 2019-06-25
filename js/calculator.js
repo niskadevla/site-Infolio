@@ -1,7 +1,7 @@
 'use strict';
 
 // formServices - id всей формы
-// formServicesInner - id Контейнера куда помещаются все Селекты
+// formServicesInner - Контейнер куда помещаются все Селекты или Рэдио одного блока
 let formServices = document.getElementById("formServices");
 let formServicesInner = formServices.querySelector(".form-services_inner");
 let totalSum = document.getElementById('totalSum').querySelector('span');
@@ -58,7 +58,8 @@ let selectService,
    selectPagePerSheet = 1,
    selectPrice = 0;
 
-var SPRING_BINDINGS_VALUES = [],
+// Все для переплета под пластиковую пружину
+let SPRING_BINDINGS_VALUES = [],
       SPRING_BINDINGS_KEYS;
 
 const SPRING_BINDINGS = {
@@ -71,11 +72,127 @@ const SPRING_BINDINGS = {
   "до 48мм (до 480 листов)" : 85
 }
 
+//Делаем массив толщин переплета из ключей объекта
 SPRING_BINDINGS_KEYS = Object.keys(SPRING_BINDINGS);
-
+//Деалем массив цен переплета из ключей объекта
 for (var key in SPRING_BINDINGS) {
    SPRING_BINDINGS_VALUES.push(SPRING_BINDINGS[key]);
 }
+//***//
+
+// Все для переплета под нитку
+let THREAD_BINDINGS_VALUES = [],
+      THREAD_BINDINGS_KEYS;
+
+const THREAD_BINDINGS = {
+  // Толщина переплета
+  "до 15мм (до 150 листов)" : 40,
+  "до 30мм (до 300 листов)" : 80,
+  "до 50мм (до 500 листов)" : 160
+}
+
+//Делаем массив толщин переплета из ключей объекта
+THREAD_BINDINGS_KEYS = Object.keys(THREAD_BINDINGS);
+//Деалем массив цен переплета из ключей объекта
+for (var key in THREAD_BINDINGS) {
+   THREAD_BINDINGS_VALUES.push(THREAD_BINDINGS[key]);
+}
+//***//
+
+// Все для переплета мягкого (с клееным каналом)
+let SOFT_BINDINGS_VALUES = [],
+      SOFT_BINDINGS_KEYS;
+
+const SOFT_BINDINGS = {
+  // Толщина переплета
+  "до 10мм (до 100 листов)" : 70,
+  "до 20мм (до 200 листов)" : 120,
+  "до 40мм (до 400 листов)" : 220
+}
+
+//Делаем массив толщин переплета из ключей объекта
+SOFT_BINDINGS_KEYS = Object.keys(SOFT_BINDINGS);
+//Деалем массив цен переплета из ключей объекта
+for (var key in SOFT_BINDINGS) {
+   SOFT_BINDINGS_VALUES.push(SOFT_BINDINGS[key]);
+}
+//***//
+
+// Все для переплета твердого (книжного)
+let HARD_BINDINGS_VALUES = [],
+      HARD_BINDINGS_KEYS;
+
+const HARD_BINDINGS = {
+  // Толщина переплета
+  "до 12мм (до 100 листов)" : 120,
+  "до 20мм (до 200 листов)" : 140,
+  "до 30мм (до 300 листов)" : 150,
+  "до 40мм (до 400 листов)" : 220,
+  "до 50мм (до 500 листов)" : 290,
+  "до 60мм (до 600 листов)" : 360,
+  "до 70мм (до 700 листов)" : 500
+}
+
+//Делаем массив толщин переплета из ключей объекта
+HARD_BINDINGS_KEYS = Object.keys(HARD_BINDINGS);
+//Деалем массив цен переплета из ключей объекта
+for (var key in HARD_BINDINGS) {
+   HARD_BINDINGS_VALUES.push(HARD_BINDINGS[key]);
+}
+//***//
+
+// Все для переплета твердого (под 3 отверстия)
+let HARD_HOLE_BINDINGS_VALUES = [],
+      HARD_HOLE_BINDINGS_KEYS;
+
+const HARD_HOLE_BINDINGS = {
+  // Толщина переплета
+  "до 25мм (до 250 листов)" : 80
+}
+
+//Делаем массив толщин переплета из ключей объекта
+HARD_HOLE_BINDINGS_KEYS = Object.keys(HARD_HOLE_BINDINGS);
+//Деалем массив цен переплета из ключей объекта
+for (var key in HARD_HOLE_BINDINGS) {
+   HARD_HOLE_BINDINGS_VALUES.push(HARD_HOLE_BINDINGS[key]);
+}
+//***//
+
+//Названия параметров формы заказа
+const PARAMS = {
+  nameService : "Наименование услуг:",
+
+  bindingSize : "Формат переплета (Размер)",
+  frameSize : "Размер рамки (картины):",
+  pageSize : "Формат бумаги (Размер):",
+
+  typeBinding : "Тип переплета:",
+  typePaper : "Тип бумаги (носителя):",
+
+  weightFilm : "Толщина пленки:",
+  weightBinding : "Толщина переплета:",
+  weightPaper : "Плотность бумаги (носителя):",
+
+  typeCover : "Тип обложки:",
+  typeSurface : "Тип поверхности:",
+
+  printColor : "Цвет печати:",
+
+  coverColor : "Цвет обложки:",
+  surfaceColor : "Цвет поверхности (цвет бумаги):",
+
+  fillPercent : "% заполнения чернил на листе:",
+
+  qtyBinding : "Количество переплетов",
+  qtyPage : "Количество страниц (шт):",
+
+  qtyCopy : "Количество экземпляров (1стр. в количестве):",
+
+  dpiQlt : "Качество сканирования (dpi):",
+
+  pagePerSheet : "Страниц на листе:"
+};
+//***//
 
 
 // Наименование услуги и формат(размер)
@@ -1497,156 +1614,570 @@ nameServices = {
                   "Переплет": {
                     "А5 (15х21) см": {
                       //Тип переплета
-                      "Под пластиковую пружину (брошюровка)": {
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[0]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[0]
+                      "Под пластиковую пружину (брошюровка)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SPRING_BINDINGS_KEYS.length; i++) {
+                          obj[SPRING_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Пластик": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Цветная": {
+                                  "": SPRING_BINDINGS_VALUES[i]
+                                }
                               }
                             }
-                          }
-                        },
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[1]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[1]
-                              }
-                            }
-                          }
-                        },
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[2]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[2]
-                              }
-                            }
-                          }
-                        },
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[3]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[3]
-                              }
-                            }
-                          }
-                        },
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[4]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[4]
-                              }
-                            }
-                          }
-                        },
-                        // Толщина переплета
-                        [SPRING_BINDINGS_KEYS[5]]: {
-                          // Тип обложки
-                          "Пластик": {
-                            //
-                            "*": {
-                              // Цвет обложки
-                              "Цветная": {
-                                "*": SPRING_BINDINGS_VALUES[5]
-                              }
-                            }
-                          }
+                          };
                         }
-                      }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Под нитку": function() {
+                        let obj = {};
+                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
+                          obj[THREAD_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Без обложки": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "": {
+                                  "": THREAD_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Мягкий (с клеенным каналом)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
+                          obj[SOFT_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Картон": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Белый": {
+                                  "": SOFT_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }()
                     },
 
-                    "А4 (21х30) см": {},
+                    "А4 (21х30) см": {
+                      //Тип переплета
+                      "Под пластиковую пружину (брошюровка)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SPRING_BINDINGS_KEYS.length; i++) {
+                          obj[SPRING_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Пластик": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Цветная": {
+                                  "": SPRING_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Под нитку": function() {
+                        let obj = {};
+                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
+                          obj[THREAD_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Без обложки": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "": {
+                                  "": THREAD_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Мягкий (с клеенным каналом)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
+                          obj[SOFT_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Картон": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Белый или цветной": {
+                                  "": SOFT_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Твердый (книжный)": function() {
+                        let obj = {};
+                        for (var i = 0; i < HARD_BINDINGS_KEYS.length; i++) {
+                          obj[HARD_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Твердая": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Цветная": {
+                                  "": HARD_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Твердый (под 3 отверстия)": function() {
+                        let obj = {};
+                        for (var i = 0; i < HARD_HOLE_BINDINGS_KEYS.length; i++) {
+                          obj[HARD_HOLE_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Твердая с надписью и без": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Цветная": {
+                                  "": HARD_HOLE_BINDINGS_VALUES[i]
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }()
+                    },
 
-                    "А3 (30х42) см": {}
+                    "А3 (30х42) см": {
+                      //Тип переплета
+                      "Под пластиковую пружину (брошюровка)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SPRING_BINDINGS_KEYS.length; i++) {
+                          obj[SPRING_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Пластик": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Безцветная": {
+                                  "": SPRING_BINDINGS_VALUES[i] + 16
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Под нитку": function() {
+                        let obj = {};
+                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
+                          obj[THREAD_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Без обложки": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "": {
+                                  "": THREAD_BINDINGS_VALUES[i] * 2
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }(),
+                      //Тип переплета
+                      "Мягкий (с клеенным каналом)": function() {
+                        let obj = {};
+                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
+                          obj[SOFT_BINDINGS_KEYS[i]] = {
+                            // Тип обложки
+                            "Картон": {
+                              //
+                              "": {
+                                // Цвет обложки
+                                "Белый или цветной": {
+                                  "": SOFT_BINDINGS_VALUES[i] * 2
+                                }
+                              }
+                            }
+                          };
+                        }
+                        return obj;
+                      }()
+                    }
                   },
 
 
                   "Ламинирование": {
                     "A7 (7x10 см)": {
                       //Тип бумаги
-                      "Простая": {
+                      "": {
                         // Плотность
                         "Средняя (75-80мкм)": {
                           // Тип поверхности
-                          "Простая": {
+                          "глянец/мат": {
                             // Цвет печати
-                            "Ч/б": {
+                            "": {
                               // Цвет поверхности
-                              "Белая": {
+                              "": {
                                 //
-                                "с картинками": 12
+                                "": 12
                               }
                             }
                           }
                         },
-                        "Тонкая(80г/м2)": {
+                        // Плотность
+                        "Плотная (175мкм)": {
                           // Тип поверхности
-                          "Простая": {
+                          "глянец/мат": {
                             // Цвет печати
-                            "Ч/б": {
+                            "": {
                               // Цвет поверхности
-                              "Белая": {
-                                // Качество сканирование, dpi
-                                "до 300": 6,
-                                "до 600": 8
-                              }
-                            },
-                            "Цветная": {
-                              // Цвет поверхности
-                              "Белая": {
-                                // Качество сканирование, dpi
-                                "до 300": 7,
-                                "до 600": 10,
-                                "до 1200": 20,
-                                "до 2400": 50
+                              "": {
+                                //
+                                "": 16
                               }
                             }
                           }
                         }
                       }
                     },
-                    "А6 (10х15) см": {},
-                    "А5 (15х21) см": {},
-                    "А4 (21х30) см": {},
-                    "А3 (30х42) см": {},
-                    "А2 (42х60) см": {},
-                    "А1 (60х84) см": {}
+                    "А6 (10х15) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (75-80мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 15
+                              }
+                            }
+                          }
+                        },
+                        // Плотность
+                        "Плотная (175мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 20
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А5 (15х21) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (75-80мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 20
+                              }
+                            }
+                          }
+                        },
+                        // Плотность
+                        "Плотная (175мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 24
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А4 (21х30) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (75-80мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 24
+                              }
+                            }
+                          }
+                        },
+                        // Плотность
+                        "Плотная (175мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 28
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А3 (30х42) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (75-100мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 33
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А2 (42х60) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (50-80мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 67
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А1 (60х84) см": {
+                      //Тип бумаги
+                      "": {
+                        // Плотность
+                        "Средняя (50-80мкм)": {
+                          // Тип поверхности
+                          "глянец/мат": {
+                            // Цвет печати
+                            "": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 119
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
 
 
                   "Натяжка на подрамник": {
-                    "А4 (21х30) см": {},
-                    "30x30 см": {},
-                    "А3 (30х42) см": {},
-                    "40x50 см": {},
-                    "А2 (42х60) см": {},
-                    "50x60 см": {},
-                    "50x70 см": {},
-                    "А1 (60х84) см": {}
+                    "А4 (21х30) см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 315
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "30x30 см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 400
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А3 (30х42) см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 410
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "40x50 см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 570
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А2 (42х60) см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 675
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "50x60 см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 795
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "50x70 см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 825
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "А1 (60х84) см": {
+                      //Тип бумаги
+                      "Холст": {
+                        // Плотность
+                        "Плотная (190-240г/м2)": {
+                          // Тип поверхности
+                          "": {
+                            // Цвет печати
+                            "Цветная": {
+                              // Цвет поверхности
+                              "": {
+                                //
+                                "": 845
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 };
 
@@ -1708,7 +2239,7 @@ function insertNameServices() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Наименование услуг: </label>\
+                <label class="col-12 col-md-6"> ' + PARAMS.nameService + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="nameService" class="form-control">\
                     <option value="" disabled selected> не выбрано </option>\
@@ -1748,6 +2279,8 @@ function insertPageSizes() {
   let options = "";
   let size;
   let disabled = "";
+  let nameLabel = selectService === "Переплет" ? PARAMS.bindingSize :
+                  selectService === "Натяжка на подрамник" ? PARAMS.frameSize : PARAMS.pageSize;
 
   if (Object.keys(pageSizes).length > 1) {
     disabled = '<option value="" disabled selected> не выбрано </option>';
@@ -1758,7 +2291,7 @@ function insertPageSizes() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Формат бумаги (Размер): </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="pageSize" class="form-control">\
                    ' + disabled + '\
@@ -1804,6 +2337,8 @@ function insertTypePapers() {
   let options = "";
   let paper;
   let disabled = "";
+  let nameLabel = selectService === "Переплет" ? PARAMS.typeBinding : PARAMS.typePaper;
+
 
   if (Object.keys(typePapers).length > 1) {
     disabled = '<option value="" disabled selected> не выбрано </option>';
@@ -1814,7 +2349,7 @@ function insertTypePapers() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Тип бумаги (носителя): </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="typePaper" class="form-control">\
                     ' + disabled + '\
@@ -1839,7 +2374,7 @@ function changeTypePaper() {
 
   selectType = select.value;
 
-  if (!selectType) return;
+  // if (!selectType) return;
 
   //Очищаем все при изменении услуги
   // Находим внешний блок, в кором произошло событие
@@ -1860,6 +2395,8 @@ function insertWeightPapers() {
   let options = "";
   let paper;
   let disabled = "";
+  let nameLabel = selectService === "Переплет" ? PARAMS.weightBinding :
+                  selectService === "Ламинирование" ? PARAMS.weightFilm : PARAMS.weightPaper;
 
   if (Object.keys(weightPapers).length > 1) {
     disabled = '<option value="" disabled selected> не выбрано </option>';
@@ -1870,7 +2407,7 @@ function insertWeightPapers() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Плотность бумаги (носителя): </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="weightPaper" class="form-control">\
                     ' + disabled + '\
@@ -1917,6 +2454,7 @@ function insertTypeSurfaces() {
   let paper;
   let html = "";
   let disabled = "";
+  let nameLabel = selectService === "Переплет" ? PARAMS.typeCover : PARAMS.typeSurface;
 
   if (Object.keys(typeSurfaces).length > 1) {
     disabled = '<option value="" disabled selected> не выбрано </option>';
@@ -1927,7 +2465,7 @@ function insertTypeSurfaces() {
   }
 
   html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Тип поверхности: </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="typeSurface" class="form-control">\
                     ' + disabled + '\
@@ -1954,7 +2492,7 @@ function changeTypeSurface() {
 
   selectTypeSurface = select.value;
 
-  if (!selectTypeSurface) return;
+  // if (!selectTypeSurface) return;
 
   //Очищаем все при изменении услуги
   // Находим внешний блок, в кором произошло событие
@@ -1992,8 +2530,9 @@ function changeTypeSurface() {
 
 function insertPrintColors() {
   let colors;
-  var label = "";
-  var checked = "";
+  let label = "";
+  let checked = "";
+  let nameLabel = selectService === "Переплет" ? "" : PARAMS.printColor;
 
   colors = Object.keys(printColors);
 
@@ -2008,7 +2547,7 @@ function insertPrintColors() {
   });
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Цвет печати: </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">' + label + '\
                 </div>\
               </div>';
@@ -2035,7 +2574,7 @@ function changePrintColor() {
 
   selectPrintColor = target.value;
 
-  if (!selectPrintColor) return;
+  // if (!selectPrintColor) return;
 
   //Очищаем все при изменении услуги
   // Находим внешний блок, в кором произошло событие
@@ -2058,6 +2597,7 @@ function insertSurfaceColors() {
   let colors;
   let label = "";
   let checked = "";
+  let nameLabel = selectService === "Переплет" ? PARAMS.coverColor : PARAMS.surfaceColor;
 
   colors = Object.keys(surfaceColors);
 
@@ -2072,7 +2612,7 @@ function insertSurfaceColors() {
   });
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Цвет поверхности (цвет бумаги): </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">' + label + '\
                 </div>\
               </div>';
@@ -2100,7 +2640,7 @@ function changeSurfaceColor() {
 
   selectSurfaceColor = target.value;
 
-  if (!selectSurfaceColor) return;
+  // if (!selectSurfaceColor) return;
 
   // Объект fillPercents, является ключом предыдещего объекта по иерархии
   fillPercents = surfaceColors[selectSurfaceColor];
@@ -2138,6 +2678,7 @@ function insertFillPercents() {
   let label = "";
   let checked = "";
   let src = "";
+  let nameLabel = selectService === "Переплет" ? "" : PARAMS.fillPercent;
 
   percents = Object.keys(fillPercents);
 
@@ -2160,7 +2701,7 @@ function insertFillPercents() {
   });
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> % заполнения чернил на листе: </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">' + '\
                   <div class="row">\
                     ' +label + '\
@@ -2190,7 +2731,7 @@ function changeFillPercent() {
 
   selectFillPercent = target.value;
 
-  if (!selectFillPercent) return;
+  // if (!selectFillPercent) return;
 
   selectPrice = fillPercents[selectFillPercent];
 
@@ -2226,6 +2767,7 @@ function insertDpiQlts() {
   let options = "";
   let dpi;
   let disabled = "";
+  let nameLabel = selectService === "Сканирование" ? PARAMS.dpiQlt : "";
 
   if (Object.keys(dpiQlts).length > 1) {
     disabled = '<option value="" disabled selected> не выбрано </option>';
@@ -2236,7 +2778,7 @@ function insertDpiQlts() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Качество сканирования (dpi): </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="dpiQlt" class="form-control">\
                     ' + disabled + '\
@@ -2281,9 +2823,10 @@ function changeDpiQlt() {
 
 
 function insertQtyPages() {
+  let nameLabel = selectService === "Переплет" ? PARAMS.qtyBinding : PARAMS.qtyPage;
 
   let html = '<div class="form-group row">\
-                 <label class="col-12 col-md-6" for="qtyPage">Количество страниц (шт): </label>\
+                 <label class="col-12 col-md-6" for="qtyPage"> ' + nameLabel +' </label>\
                  <input type="number" class="col-12 col-md-6" id="qtyPage" value="1" min="1">\
               </div>';
 
@@ -2303,6 +2846,7 @@ function changeQtyPage() {
 
 function insertQtyCopies() {
   let minQty = 1;
+  let nameLabel = selectService === "Переплет" ? "" : PARAMS.qtyCopy;
 
   if (selectService === "Ризограф") {
     minQty = 10;
@@ -2310,7 +2854,7 @@ function insertQtyCopies() {
   }
 
   let html = '<div class="form-group row">\
-                 <label class="col-12 col-md-6" for="qtyCopy">Количество экземпляров (1 стр в количестве): </label>\
+                 <label class="col-12 col-md-6" for="qtyCopy"> ' + nameLabel + ' </label>\
                  <input type="number" class="col-12 col-md-6" id="qtyCopy" value="' + minQty + '" min="' + minQty + '">\
               </div>';
 
@@ -2331,6 +2875,7 @@ function changeQtyCopy() {
 function insertPagesPerSheet() {
   let options = "";
   let paper;
+  let nameLabel = selectService === "Переплет" ? "" : PARAMS.pagePerSheet;
   // isPPS - если false, то несколько страниц на листе доступно,
   // если true, то 1 стр на листе
   let isPPS = false;
@@ -2360,7 +2905,7 @@ function insertPagesPerSheet() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> Страниц на листе: </label>\
+                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
                 <div class="col-12 col-md-6">\
                   <select id="pagePerSheet" class="form-control">\
                     ' + options + '\
@@ -2385,7 +2930,7 @@ function changePagePerSheet() {
 
   selectPagePerSheet = select.value;
 
-  if (!selectPagePerSheet) return;
+  // if (!selectPagePerSheet) return;
 
   recalc();
 }
@@ -2464,8 +3009,8 @@ function recalc() {
         discount = (100 - 55) / 100;
       }
     }// Условие для любой цветной печати
-    else if ( (selectPrintColor === "Цветная" && selectService !== "Сканирование")
-             || selectService === "Переплет") {
+    else if ( (selectPrintColor === "Цветная" && selectService === "Распечатка")
+             && selectService === "Ксерокс") {
       if (totalPages > 9 && totalPages < 50) {
          // 20 % скидка
          discount = (100 - 20) / 100;
@@ -2500,7 +3045,7 @@ function recalc() {
         discount = (100 - 52) / 100;
       }
    }// Условие для ч/б ксерокс А3
-   else if (selectService === "Распечатка"
+   else if (selectService === "Ксерокс"
            && selectSize === "А3 (30х42) см"
            && selectType === "Простая"
            && selectPrintColor === "Ч/б") {
@@ -2538,8 +3083,18 @@ function recalc() {
         // 70 % скидка
         discount = (100 - 70) / 100;
       }
-    }// Условие для сканирования
-    else if (selectService === "Сканирование") {
+    }// Условие для твердого Переплета
+    else if (selectService === "Переплет" && selectType === "Твердый (книжный)") {
+      if (totalPages > 4 && totalPages < 10) {
+         // 10 % скидка
+         discount = (100 - 10) / 100;
+      } else if (totalPages > 9 ) {
+        // 20 % скидка
+        discount = (100 - 20) / 100;
+      }
+    }// Условие для остальных услуг
+    else if (selectService === "Сканирование" || selectService === "Ламинирование"
+            || selectService === "Натяжка на подрамник" || selectService === "Переплет") {
       if (totalPages > 9 && totalPages < 50) {
          // 10 % скидка
          discount = (100 - 10) / 100;
@@ -2557,6 +3112,7 @@ function recalc() {
    htmlTotalSum = Math.round(totalPages * selectPrice * 10) / 10;
    htmlTotalSumDiscounted = Math.round(totalPages * selectPrice * discount * 10) / 10;
 
+   //Вставка данных на страницу
    // Какую цену вставить в HTML, со скидкой или нет
    // Если со скидкой, то обе цены, чтоб первую перечеркнуть
    if (discount === discountOrigin ) {
@@ -2570,11 +3126,10 @@ function recalc() {
 
    // Если количество экземпляров попадает под раздел ризограф
    isRizograf();
-
 }
 
 
-
+// Initialize
 // Запуск всего калькулятора, т.е. вставка первых ключей основного объекта
 insertNameServices();
 // Вешаем на первый элемент обработчки событий
