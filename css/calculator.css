@@ -17,15 +17,16 @@
   align-items: center;
 }
 
-.form-services p {
+/* .form-services p {
   text-align: center;
-}
+} */
 
 /* .form-services label {
   line-height: 1.5;
 } */
 
-.form-services label[class*="col-12"] {
+.form-services label[class*="col-12"],
+.table-services__groov {
   font-size: 0.9;
   font-style: italic;
   color: #666666;
@@ -99,3 +100,33 @@
   font-size: 1.5rem;
   line-height: 1;
 } */
+
+.table-services table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+.table-services th {
+  border: 1px groove #bbb;
+  padding: 3px;
+  background-color: #ddd;
+}
+
+.table-services td {
+  border: 1px groove #bbb;
+  padding: 3px;
+}
+
+.table-services_tbody td:first-child {
+  font-style: italic;
+}
+
+.table-services_tfoot tr:first-child{
+  font-style: normal;
+}
+
+.table-services_tfoot tr:last-child {
+  background-color: #efefef;
+  font-weight: bold;
+}
