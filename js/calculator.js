@@ -4,8 +4,8 @@
 // formServicesInner - Контейнер куда помещаются все Селекты или Рэдио одного блока
 let formServices = document.getElementById("formServices");
 let formServicesInner = formServices.querySelector(".form-services_inner");
-let totalSum = document.getElementById('totalSum').querySelector('span');
-let totalSumDiscounted = document.getElementById('totalSum').querySelectorAll('span')[1];
+let htmlTotalSum = document.getElementById('totalSum').querySelector('span');
+let htmlTotalSumDiscounted = document.getElementById('totalSum').querySelectorAll('span')[1];
 
 // nameServices - [Object] - Наименование услуги и формат(размер)
 // pageSizes - [Object] -Объект размеров (формата носителя)
@@ -2746,10 +2746,16 @@ function changeFillPercent() {
     changeQtyPage();
   }
 
-  insertQtyCopies();
+  // Количество экземпляров доступно для всех кроме следующих услуг:
+  if (selectService !== "Переплет"
+      && selectService !== "Ламинирование"
+      && selectService !== "Натяжка на подрамник") {
 
-  document.getElementById("qtyCopy").onchange = function() {
-    changeQtyCopy();
+    insertQtyCopies();
+
+    document.getElementById("qtyCopy").onchange = function() {
+      changeQtyCopy();
+    }
   }
 
   insertPagesPerSheet();
@@ -2937,8 +2943,8 @@ function changePagePerSheet() {
 
 
 function clearResult() {
-  totalSum.innerHTML = 0;
-  totalSumDiscounted.innerHTML = "";
+  htmlTotalSum.innerHTML = 0;
+  htmlTotalSumDiscounted.innerHTML = "";
   selectQtyPage = 1;
   selectQtyCopy = 1;
   selectPagePerSheet = 1;
@@ -2961,14 +2967,14 @@ function isRizograf() {
 
 function recalc() {
   // Очистить сумму
-  totalSum.innerHTML = 0;
-  totalSumDiscounted.innerHTML = "";
+  htmlTotalSum.innerHTML = 0;
+  htmlTotalSumDiscounted.innerHTML = "";
 
   let discountOrigin = 1;
   let discount = discountOrigin;
   let totalPages = 0,
-      htmlTotalSum = 0,
-      htmlTotalSumDiscounted = 0;
+      totalSum = 0,
+      totalSumDiscounted = 0;
 
   selectPagePerSheet = selectPagePerSheet || 1;
   selectQtyCopy = selectQtyCopy || 1;
@@ -3010,7 +3016,8 @@ function recalc() {
       }
     }// Условие для любой цветной печати
     else if ( (selectPrintColor === "Цветная" && selectService === "Распечатка")
-             && selectService === "Ксерокс") {
+             || (selectPrintColor === "Цветная" && selectService === "Ксерокс")
+             || selectService === "Ламинирование") {
       if (totalPages > 9 && totalPages < 50) {
          // 20 % скидка
          discount = (100 - 20) / 100;
@@ -3020,7 +3027,9 @@ function recalc() {
       } else if (totalPages > 99 && totalPages < 500) {
         // 30 % скидка
         discount = (100 - 30) / 100;
-      } else if (totalPages > 499 || selectQtyCopy > 99) {
+      }
+
+      if (totalPages > 499 || selectQtyCopy > 99) {
         // 40 % скидка
         discount = (100 - 40) / 100;
       }
@@ -3093,8 +3102,9 @@ function recalc() {
         discount = (100 - 20) / 100;
       }
     }// Условие для остальных услуг
-    else if (selectService === "Сканирование" || selectService === "Ламинирование"
-            || selectService === "Натяжка на подрамник" || selectService === "Переплет") {
+    else if (selectService === "Сканирование"
+            || selectService === "Натяжка на подрамник"
+            || selectService === "Переплет") {
       if (totalPages > 9 && totalPages < 50) {
          // 10 % скидка
          discount = (100 - 10) / 100;
@@ -3109,19 +3119,19 @@ function recalc() {
     // -- *** ---
 
    // Формула просчета цены
-   htmlTotalSum = Math.round(totalPages * selectPrice * 10) / 10;
-   htmlTotalSumDiscounted = Math.round(totalPages * selectPrice * discount * 10) / 10;
+   totalSum = Math.round(totalPages * selectPrice * 10) / 10;
+   totalSumDiscounted = Math.round(totalPages * selectPrice * discount * 10) / 10;
 
    //Вставка данных на страницу
    // Какую цену вставить в HTML, со скидкой или нет
    // Если со скидкой, то обе цены, чтоб первую перечеркнуть
    if (discount === discountOrigin ) {
-     totalSum.innerHTML = htmlTotalSum;
-     totalSum.classList.remove("table-services_total-sum");
+     htmlTotalSum.innerHTML = totalSum;
+     htmlTotalSum.classList.remove("table-services_total-sum");
    } else {
-     totalSum.innerHTML = htmlTotalSum;
-     totalSum.classList.add("table-services_total-sum");
-     totalSumDiscounted.innerHTML = htmlTotalSumDiscounted;
+     htmlTotalSum.innerHTML = totalSum;
+     htmlTotalSum.classList.add("table-services_total-sum");
+     htmlTotalSumDiscounted.innerHTML = totalSumDiscounted;
    }
 
    // Если количество экземпляров попадает под раздел ризограф
