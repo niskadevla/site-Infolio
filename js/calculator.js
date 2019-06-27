@@ -3080,7 +3080,26 @@ function recalc() {
         // 52 % скидка
         discount = (100 - 52) / 100;
       }
-   }// Условие для ч/б ксерокс А3
+   }// Условие для ч/б ксерокс А4
+   else if (selectService === "Ксерокс"
+           && selectSize === "А4 (21х30) см"
+           && selectType === "Простая"
+           && selectPrintColor === "Ч/б") {
+     if (selectQtyPage > 99 && selectQtyPage < 1000 && selectQtyCopy > 2 && selectQtyCopy < 10) {
+       // 20 % скидка
+       discount = (100 - 20) / 100;
+     } else if (selectQtyPage > 999 && selectQtyCopy > 2 && selectQtyCopy < 10) {
+      // 50 % скидка
+      discount = (100 - 50) / 100;
+    }else if (selectQtyPage > 499 && selectQtyCopy > 9) {
+      // 67 % скидка
+      discount = (100 - 67) / 100;
+     }else if (selectQtyCopy > 9) {
+       // 33.3333 % скидка
+       discount = (100 - 33.3333) / 100;
+      }
+   }
+   // Условие для ч/б ксерокс А3
    else if (selectService === "Ксерокс"
            && selectSize === "А3 (30х42) см"
            && selectType === "Простая"
