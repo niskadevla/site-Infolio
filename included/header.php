@@ -225,6 +225,11 @@
                 доставка и оплата
               </a>
             </li>
+            <li>
+              <a href="http://www.infolio.top/calculator.php">
+                Цены
+              </a>
+            </li>
           </ul>
         </div> <!-- -END- menuNav -->
 
@@ -276,12 +281,17 @@
                 доставка и оплата
               </a>
             </li>
+            <li>
+              <a href="http://www.infolio.top/calculator.php">
+                Цены
+              </a>
+            </li>
           </ul>
         </div> <!-- -END-  mobileMenu (display: none) -->
 
 
 
-        <div class="serchWrap col-lg-auto">
+        <!-- <div class="serchWrap col-lg-auto">
           <div class="serch">
             <div class="searchInner">
               <form>
@@ -292,9 +302,12 @@
                       title="Поиск"/>
               </form>
 
-            </div> <!-- -END- serchInner -->
-          </div>  <!-- -END- serch -->
-        </div> <!-- -END- serchWrap -->
+            </div>
+
+          </div>
+
+        </div>  -->
+        <!-- -END- serchWrap -->
       </div> <!-- -END- row  -->
     </div> <!-- -END menu class="container" -->
   </div> <!-- -END- Нижний хедер (Меню) -->
