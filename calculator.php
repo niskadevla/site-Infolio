@@ -39,7 +39,7 @@
           <!-- <p></p> -->
           <table>
             <caption>Вы выбрали:</caption>
-            <tbody class="table-services_tbody">              
+            <tbody class="table-services_tbody">
             </tbody>
 
             <tfoot class="table-services_tfoot">
@@ -53,6 +53,14 @@
           </table>
         </div>
       </div> <!-- -END- col-sm   -->
+
+      <div class="col-sm-6">
+        <div class="form-send" id="formSend">
+          <form action="" method="post">
+
+          </form>
+        </div>
+      </div>
     </div>  <!-- -END- contentInner -->
   </div> <!-- -END- content-->
 </article>
