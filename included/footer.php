@@ -70,12 +70,10 @@
                   "<link href='https://fonts.googleapis.com/css?family=Pangolin|Roboto' rel='stylesheet'>",
                   "<link rel='stylesheet' href='css/style.css' type='text/css'>",
                   "<link rel='stylesheet' href='css/animation.css' type='text/css'>",
-                  "<link rel='shortcut icon' href='../img/fav.png' type='image/x-icon'>",
-                  "<link rel='stylesheet' type='text/css' href='css/modal_window.css' />");
+                  "<link rel='shortcut icon' href='../img/fav.png' type='image/x-icon'>");
     array_push($scripts, "js/main.js",
                           "js/after_loaded.js",
-                          "js/copy.js",
-                          "js/akcija.js");
+                          "js/copy.js");
   ?>
 
   loadLink(<?= json_encode($links);?>, <?= json_encode($scripts);?>);

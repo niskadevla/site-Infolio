@@ -147,19 +147,21 @@
 
         <div class="schedule col-md-auto order-md-last">
           <ul>
-            <li>График работы:</li>
+            <!-- <li>График работы:</li>
             <li>Пн-Пт: 8.30 - 19.30</li>
-            <li>Сб - Вс: 10.00 - 18.00</li>
+            <li>Сб - Вс: 10.00 - 18.00</li> -->
             <!-- <li>28.04.19(Пасха) - ВЫХОДНОЙ!</li> -->
-            <li>График в период праздников:</li>
+            <!-- <li>График в период праздников:</li>
             <li>16 июня - работаем с 10.00 до 18.00</li>
-            <li>Остальные дни по обычному графику</li>
+            <li>Остальные дни по обычному графику</li> -->
             <!-- <li>Мы работаем в обычном режиме</li> -->
 
-            <!-- <li>График работы летний:</li>
-            <li>(с 26 июня по 2 сентября)</li>
+            <li>График работы летний:</li>
+            <li>(с 26 июня по 1 сентября)</li>
             <li>Пн - Пт: 8.30 - 17.00</li>
-            <li>Сб - Вс: 11.00 - 16.00</li> -->
+            <li>Сб - Вс: 11.00 - 16.00</li>
+            <!-- <li>28 июня - работаем по графику</li>
+            <li>все остальные дни - работаем по летнему графику</li> -->
 
             <!-- <li>Если вы не успеваете, </li>
             <li>позвоните мы задержемся</li> -->
@@ -223,6 +225,11 @@
                 доставка и оплата
               </a>
             </li>
+            <li>
+              <a href="http://www.infolio.top/calculator.php">
+                Цены
+              </a>
+            </li>
           </ul>
         </div> <!-- -END- menuNav -->
 
@@ -274,12 +281,17 @@
                 доставка и оплата
               </a>
             </li>
+            <li>
+              <a href="http://www.infolio.top/calculator.php">
+                Цены
+              </a>
+            </li>
           </ul>
         </div> <!-- -END-  mobileMenu (display: none) -->
 
 
 
-        <div class="serchWrap col-lg-auto">
+        <!-- <div class="serchWrap col-lg-auto">
           <div class="serch">
             <div class="searchInner">
               <form>
@@ -290,9 +302,12 @@
                       title="Поиск"/>
               </form>
 
-            </div> <!-- -END- serchInner -->
-          </div>  <!-- -END- serch -->
-        </div> <!-- -END- serchWrap -->
+            </div>
+
+          </div>
+
+        </div>  -->
+        <!-- -END- serchWrap -->
       </div> <!-- -END- row  -->
     </div> <!-- -END menu class="container" -->
   </div> <!-- -END- Нижний хедер (Меню) -->
