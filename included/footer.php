@@ -9,7 +9,6 @@
 
       </div>
     </div>
-       <!-- <img src="img/map.jpg" alt=""> -->
   </div>
 </div>
 

@@ -7,13 +7,26 @@
   require_once "included/sidebar.php";
   include "included/options.php";
 ?>
+<!--
+<script src="/js/calculatorSend.js">
+</script> -->
+
+<?php
+  // if (!empty($_POST)) {
+  //   $_POST['mail_table'] = "<script type=\"text/javascript\">
+  //                             tableForEmail();
+  //                           </script>";
+  //   //Обработчик HTML-формы
+  //   include "included/handler.php";
+  // }
+?>
 
 <article class="col-lg-9">
   <div class="content">
     <div class="contentTitle">
       <h4 class="text-uppercase">услуги / калькулятор цены</h4>
     </div>
-    <div class="contentInner row">
+    <div class="contentInner row content-calculator">
 
       <div class="col-sm-6"> <!-- col-sm -->
         <div class="form-services" id="formServices">
@@ -22,10 +35,6 @@
 
             <div class="form-services_inner">
             </div>
-
-
-            <!-- <input type="submit" value="Посчитать"> -->
-
 
           <!-- <div class="form-services_notification">
           </div> -->
@@ -36,18 +45,17 @@
       <div class="col-sm-6">
         <div class="table-services" id="tableServices">
           <h3 class="table-services_title">Результат просчета</h3>
-          <!-- <p></p> -->
           <table>
             <caption>Вы выбрали:</caption>
             <tbody class="table-services_tbody">
             </tbody>
 
-            <tfoot class="table-services_tfoot">
-              <tr>
-                <td id="sum" colspan="2">Цена за 1 шт (ед.): <span>0</span> <span class="table-service_total-sum-discounted"></span> <?=$currency?></td>
+            <tfoot>
+              <tr >
+                <td id="sum" colspan="2">Цена за 1 шт (ед.): <span>0</span> <span style="font-weight: bold"></span> <?=$currency?></td>
               </tr>
-              <tr>
-                <td id="totalSum" colspan="2">Сумма заказа: <span>0</span> <span class="table-service_total-sum-discounted"></span> <?=$currency?></td>
+              <tr style="background-color: #efefef;font-weight: bold;">
+                <td id="totalSum" colspan="2">Сумма заказа: <span>0</span> <span style="font-weight: bold"></span> <?=$currency?></td>
               </tr>
             </tfoot>
           </table>
@@ -56,8 +64,41 @@
 
       <div class="col-sm-6">
         <div class="form-send" id="formSend">
-          <form action="" method="post">
+          <h3 class="form-send_title">Форма отправки заказа</h3>
 
+          <form name="calculatorSend" class="form-send_inner" enctype="multipart/form-data" action="" method="post">
+            <div class="form-group row">
+              <label class="col-12 col-md-4" for="mail_from"> Ваш e-mail *: </label>
+              <input type="email" class="col-12 col-md-8" id="mail_from" name="mail_from" placeholder="vasya@gmail.com" required>
+              <div class="form-send_notification">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-12 col-md-4" for="mail_subject"> Тема: </label>
+              <input type="text" class="col-12 col-md-8" id="mail_subject" name="mail_subject" value="Просчет цены в калькуляторе">
+            </div>
+            <div class="form-group row">
+              <label class="col-12 col-md-4" for="mail_msg"> Комментарии: </label>
+              <textarea class="col-12 col-md-8" cols="56" rows="8" id="mail_msg" name="mail_msg" maxlength="69"></textarea>
+              <div class="form-send_notification">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-12 col-md-4" for="mail_msg"> Прикрепите файл: </label>
+              <input type="file" class="col-12 col-md-8" id="mail_file" name="mail_file" multiple>
+              <span class="form-send_notification">Файлы должны весить не более 15 Мб</span>
+              <div class="form-send_notification">
+              </div>
+            </div>
+            <!-- <div class="form-group row">
+              <input type="hidden" class="col-12 col-md-8" name="mail_hidden" value="777">
+            </div> -->
+            <div class="form-group">
+              <input id="submit" class="btn_submit" type="button" value="Отправить">
+            </div>
+            <div class="form-send_notification">
+              <?=$error?>
+            </div>
           </form>
         </div>
       </div>
@@ -68,7 +109,8 @@
 <?php
   $links = array("<link rel='stylesheet' type='text/css' href='/css/calculator.css'/>");
   $scripts = array("http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js",
-                    "/js/calculator.js");
+                    "/js/calculator.js",
+                    "/js/calculatorSend.js");
 
   require_once "included/footer.php";
 ?>

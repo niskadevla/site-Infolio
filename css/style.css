@@ -816,6 +816,10 @@ input.searchButton:hover {
   min-height: 80vh;
 }
 
+.content {
+  height: 100%;
+}
+
 .content h2 {
   text-align: center;
   font-weight: bold;

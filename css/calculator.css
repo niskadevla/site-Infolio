@@ -1,4 +1,11 @@
-.form-services {
+.content-calculator {
+  justify-content: center;
+  /* align-content: space-around; */
+  height: 100%;
+}
+
+.form-services,
+.form-send {
   padding: 10px;
   border: 1px solid #d1d1d1;
   box-shadow: 4px 4px 7px 3px #dadada;
@@ -7,13 +14,15 @@
 }
 
 .form-services_title,
-.table-services_title {
+.table-services_title,
+.form-send_title {
   text-align: center;
   border-bottom: 1px groove #bbb;
   padding-bottom: 0.5rem;
 }
 
-.form-services .row {
+.form-services .row,
+.form-send .row {
   align-items: center;
 }
 
@@ -60,12 +69,15 @@
 }
 
 
-.form-services_notification {
+.form-services_notification,
+.form-send_notification {
   font-style: italic;
   font-size: 0.8rem;
   min-height: 1px;
   width: 100%;
   text-align: left;
+  color: red;
+  text-align: center;
 }
 
 .table-services {
@@ -74,9 +86,10 @@
 
 .table-services_total-sum {
   position: relative;
+  font-size: .9rem!important;
+  text-decoration: none!important;
   /* text-decoration: line-through; */
   /* text-decoration-style: double; */
-  font-size: .9rem;
 }
 .table-services_total-sum::after {
   content: "";
@@ -122,11 +135,22 @@
   font-style: italic;
 }
 
-.table-services_tfoot tr:first-child{
+/* .table-services_tfoot tr:first-child{
   font-style: normal;
 }
 
 .table-services_tfoot tr:last-child {
   background-color: #efefef;
   font-weight: bold;
+} */
+
+.form-send {
+  margin-top: 2em;
+}
+
+.btn_submit {
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

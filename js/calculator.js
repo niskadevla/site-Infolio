@@ -5,13 +5,15 @@
 let formServices = document.getElementById("formServices");
 let formServicesInner = formServices.querySelector(".form-services_inner");
 
+let tableServices = document.getElementById("tableServices");
+// tableServices.insertAdjacentHTML("beforeEnd", htmlTable);
+let table = tableServices.querySelector("table");
+
 let htmlSum = document.getElementById('sum').querySelector('span');
 let htmlSumDiscounted = document.getElementById('sum').querySelectorAll('span')[1];
 let htmlTotalSum = document.getElementById('totalSum').querySelector('span');
 let htmlTotalSumDiscounted = document.getElementById('totalSum').querySelectorAll('span')[1];
 
-let tableServices = document.getElementById("tableServices");
-let table = tableServices.querySelector("table");
 
 // nameServices - [Object] - Наименование услуги и формат(размер)
 // pageSizes - [Object] -Объект размеров (формата носителя)
@@ -1684,46 +1686,6 @@ nameServices = {
                                 "Цветная": {
                                   "": SPRING_BINDINGS_VALUES[i]
                                 }
-<<<<<<< HEAD
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Под нитку": function() {
-                        let obj = {};
-                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
-                          obj[THREAD_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Без обложки": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "": {
-                                  "": THREAD_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Мягкий (с клеенным каналом)": function() {
-                        let obj = {};
-                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
-                          obj[SOFT_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Картон": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Белый": {
-                                  "": SOFT_BINDINGS_VALUES[i]
-                                }
-=======
                               }
                             }
                           };
@@ -2095,341 +2057,6 @@ nameServices = {
                               "": {
                                 //
                                 "": 67
->>>>>>> 53402fe0cefda000b467883f913954bfbe129b31
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }()
-                    },
-<<<<<<< HEAD
-
-                    "А4 (21х30) см": {
-                      //Тип переплета
-                      "Под пластиковую пружину (брошюровка)": function() {
-                        let obj = {};
-                        for (var i = 0; i < SPRING_BINDINGS_KEYS.length; i++) {
-                          obj[SPRING_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Пластик": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Цветная": {
-                                  "": SPRING_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Под нитку": function() {
-                        let obj = {};
-                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
-                          obj[THREAD_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Без обложки": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "": {
-                                  "": THREAD_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Мягкий (с клеенным каналом)": function() {
-                        let obj = {};
-                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
-                          obj[SOFT_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Картон": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Белый или цветной": {
-                                  "": SOFT_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Твердый (книжный)": function() {
-                        let obj = {};
-                        for (var i = 0; i < HARD_BINDINGS_KEYS.length; i++) {
-                          obj[HARD_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Твердая": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Цветная": {
-                                  "": HARD_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Твердый (под 3 отверстия)": function() {
-                        let obj = {};
-                        for (var i = 0; i < HARD_HOLE_BINDINGS_KEYS.length; i++) {
-                          obj[HARD_HOLE_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Твердая с надписью и без": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Цветная": {
-                                  "": HARD_HOLE_BINDINGS_VALUES[i]
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }()
-                    },
-
-                    "А3 (30х42) см": {
-                      //Тип переплета
-                      "Под пластиковую пружину (брошюровка)": function() {
-                        let obj = {};
-                        for (var i = 0; i < SPRING_BINDINGS_KEYS.length; i++) {
-                          obj[SPRING_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Пластик": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Безцветная": {
-                                  "": SPRING_BINDINGS_VALUES[i] + 16
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Под нитку": function() {
-                        let obj = {};
-                        for (var i = 0; i < THREAD_BINDINGS_KEYS.length; i++) {
-                          obj[THREAD_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Без обложки": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "": {
-                                  "": THREAD_BINDINGS_VALUES[i] * 2
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }(),
-                      //Тип переплета
-                      "Мягкий (с клеенным каналом)": function() {
-                        let obj = {};
-                        for (var i = 0; i < SOFT_BINDINGS_KEYS.length; i++) {
-                          obj[SOFT_BINDINGS_KEYS[i]] = {
-                            // Тип обложки
-                            "Картон": {
-                              //
-                              "": {
-                                // Цвет обложки
-                                "Белый или цветной": {
-                                  "": SOFT_BINDINGS_VALUES[i] * 2
-                                }
-                              }
-                            }
-                          };
-                        }
-                        return obj;
-                      }()
-                    }
-                  },
-
-
-                  "Ламинирование": {
-                    "A7 (7x10 см)": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (75-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 12
-                              }
-                            }
-                          }
-                        },
-                        // Плотность
-                        "Плотная (175мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 16
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "А6 (10х15) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (75-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 15
-                              }
-                            }
-                          }
-                        },
-                        // Плотность
-                        "Плотная (175мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 20
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "А5 (15х21) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (75-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 20
-                              }
-                            }
-                          }
-                        },
-                        // Плотность
-                        "Плотная (175мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 24
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "А4 (21х30) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (75-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 24
-                              }
-                            }
-                          }
-                        },
-                        // Плотность
-                        "Плотная (175мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 28
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "А3 (30х42) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (75-100мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 33
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "А2 (42х60) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (50-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 67
                               }
                             }
                           }
@@ -2457,29 +2084,6 @@ nameServices = {
                     }
                   },
 
-=======
-                    "А1 (60х84) см": {
-                      //Тип бумаги
-                      "": {
-                        // Плотность
-                        "Средняя (50-80мкм)": {
-                          // Тип поверхности
-                          "глянец": {
-                            // Цвет печати
-                            "": {
-                              // Цвет поверхности
-                              "": {
-                                //
-                                "": 119
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-
->>>>>>> 53402fe0cefda000b467883f913954bfbe129b31
 
                   "Натяжка на подрамник": {
                     "А4 (21х30) см": {
@@ -3207,15 +2811,9 @@ function changeFillPercent() {
   if (selectService !== "Переплет"
       && selectService !== "Ламинирование"
       && selectService !== "Натяжка на подрамник") {
-<<<<<<< HEAD
 
     insertQtyCopies();
 
-=======
-
-    insertQtyCopies();
-
->>>>>>> 53402fe0cefda000b467883f913954bfbe129b31
     document.getElementById("qtyCopy").onchange = function() {
       changeQtyCopy();
     }
@@ -3633,7 +3231,6 @@ function recalc() {
    sumDiscounted = Math.round(selectPrice * discount * 100) / 100;
    totalSum = Math.round(totalPages * selectPrice * 10) / 10;
    totalSumDiscounted = Math.round(totalPages * selectPrice * discount * 10) / 10;
-<<<<<<< HEAD
 
    let selectData = {
      [PARAMS.nameService] : selectService,
@@ -3651,25 +3248,6 @@ function recalc() {
 
      [PARAMS.printColor] : selectPrintColor,
 
-=======
-
-   let selectData = {
-     [PARAMS.nameService] : selectService,
-
-     [selectService === "Переплет" ? PARAMS.bindingSize :
-      selectService === "Натяжка на подрамник" ? PARAMS.frameSize : PARAMS.pageSize] : selectSize,
-
-     [selectService === "Переплет" ? PARAMS.typeBinding : PARAMS.typePaper] : selectType,
-
-     [selectService === "Переплет" ? PARAMS.weightBinding :
-      selectService === "Ламинирование" ? PARAMS.weightFilm :
-      selectService === "Распечатка" && selectSize === "CD/DVD диск" ? PARAMS.weightDisk : PARAMS.weightPaper] : selectWeight,
-
-     [selectService === "Переплет" ? PARAMS.typeCover : PARAMS.typeSurface] : selectTypeSurface,
-
-     [PARAMS.printColor] : selectPrintColor,
-
->>>>>>> 53402fe0cefda000b467883f913954bfbe129b31
      [selectService === "Переплет" ? PARAMS.coverColor : PARAMS.surfaceColor] : selectSurfaceColor,
 
      [PARAMS.fillPercent] : selectFillPercent,
@@ -3694,18 +3272,26 @@ function recalc() {
    // Какую цену вставить в HTML, со скидкой или нет
    // Если со скидкой, то обе цены, чтоб первую перечеркнуть
    if (discount === discountOrigin ) {
+     //Если нет скидки
      htmlSum.innerHTML = sum;
      htmlSum.classList.remove("table-services_total-sum");
 
      htmlTotalSum.innerHTML = totalSum;
      htmlTotalSum.classList.remove("table-services_total-sum");
    } else {
+     //Если есть скидка
      htmlSum.innerHTML = sum;
      htmlSum.classList.add("table-services_total-sum");
+     htmlSum.style.cssText = "font-size: .9rem;\
+                              text-decoration: line-through;\
+                              text-decoration-style: double;";
      htmlSumDiscounted.innerHTML = sumDiscounted;
 
      htmlTotalSum.innerHTML = totalSum;
      htmlTotalSum.classList.add("table-services_total-sum");
+     htmlTotalSum.style.cssText = "font-size: .9rem;\
+                                  text-decoration: line-through;\
+                                  text-decoration-style: double;";
      htmlTotalSumDiscounted.innerHTML = totalSumDiscounted;
    }
 
@@ -3720,6 +3306,7 @@ function recalc() {
 
    table.tBodies[0].innerHTML = html;
    //*** - END - Вставка данных на страницу***//
+
 
    // Если количество экземпляров попадает под раздел ризограф
    isRizograf();
