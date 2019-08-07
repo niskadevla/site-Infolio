@@ -3275,9 +3275,15 @@ function recalc() {
      //Если нет скидки
      htmlSum.innerHTML = sum;
      htmlSum.classList.remove("table-services_total-sum");
+     htmlSum.style.cssText = "font-size: inherit;\
+                              text-decoration: none;\
+                              text-decoration-style: none;";
 
      htmlTotalSum.innerHTML = totalSum;
      htmlTotalSum.classList.remove("table-services_total-sum");
+     htmlTotalSum.style.cssText = "font-size: inheritm;\
+                                  text-decoration: none;\
+                                  text-decoration-style: none;";
    } else {
      //Если есть скидка
      htmlSum.innerHTML = sum;
