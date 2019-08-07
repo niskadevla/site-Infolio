@@ -31,7 +31,7 @@
       $_POST['mail_table'];
 
   $mail_fro = $_POST['mail_from'];
-  $mail_to = "denagro@ukr.net, $mail_fro";
+  $mail_to = "info@infolio.top, $mail_fro";
   $mail_from = 'From: '.$_POST['mail_from'];
   // Отправляем почтовое сообщение
   // if(empty($picture)) mail($mail_to, $thm, $msg, $mail_from);

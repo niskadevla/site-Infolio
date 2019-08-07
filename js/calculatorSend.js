@@ -39,7 +39,6 @@ function sendMail(form) {
   xhr2.send(formData);
   // form.lastElementChild.innerHTML = "Ваш заказ отправлен";
   alert("Ваш заказ принят.\nВся информация отправлена вам на email");
-  // button8.innerHTML = 'Загружаю...';
 }
 
 function validate(form) {

@@ -2351,7 +2351,7 @@ function insertPageSizes() {
   }
 
   let html = '<div class="form-group row">\
-                <label class="col-12 col-md-6"> ' + nameLabel + ' </label>\
+                <label class="col-12 col-md-6">' + nameLabel + '</label>\
                 <div class="col-12 col-md-6">\
                   <select id="pageSize" class="form-control">\
                    ' + disabled + '\
