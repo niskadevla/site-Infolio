@@ -31,7 +31,8 @@
       $_POST['mail_table'];
 
   $mail_fro = $_POST['mail_from'];
-  $mail_to = "info@infolio.top, $mail_fro";
+  $mail_to = "infolio009@gmail.com, $mail_fro";
+  // $mail_to = "infolio2009@ukr.net, $mail_fro";
   $mail_from = 'From: '.$_POST['mail_from'];
   // Отправляем почтовое сообщение
   // if(empty($picture)) mail($mail_to, $thm, $msg, $mail_from);
@@ -51,20 +52,21 @@
     }
 
     $boundary = "--".md5(uniqid(time())); // генерируем разделитель
+    // $boundary = "--777"; // генерируем разделитель
     $headers .= "MIME-Version: 1.0\n";
-    $headers .="Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+    $headers .="Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
     $headers .= "$from\n";
     $multipart .= "--$boundary\n";
     $kod = 'utf-8'; // или $kod = 'windows-1251';
     $multipart .= "Content-Type: text/html; charset=$kod\n";
-    $multipart .= "Content-Transfer-Encoding: Quot-Printed\n\n";
-    $multipart .= "$html\n\n";
+    $multipart .= "Content-Transfer-Encoding: Quot-Printed\n";
+    $multipart .= "$html\n";
 
     $message_part = "--$boundary\n";
     if (!empty($path)) {
       $message_part .= "Content-Type: application/octet-stream\n";
       $message_part .= "Content-Transfer-Encoding: base64\n";
-      $message_part .= "Content-Disposition: attachment; filename = \"".$path."\"\n\n";
+      $message_part .= "Content-Disposition: attachment; filename = \"".$path."\"\n";
       $message_part .= chunk_split(base64_encode($file))."\n";
     }
 

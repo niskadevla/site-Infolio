@@ -196,15 +196,15 @@
               </span>
             </li>
             <li>
-              <a href="http://www.infolio.top/">
+              <a href="http://infolio.top/">
                 <em class="fas fa-home"></em>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="/">
                 услуги
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="http://www.infolio.top/contacts.php">
                 контакты
@@ -228,6 +228,11 @@
             <li>
               <a href="http://www.infolio.top/calculator.php">
                 Цены
+              </a>
+            </li>
+            <li>
+              <a href="http://www.infolio.top/forget.php">
+                Забывашки
               </a>
             </li>
           </ul>
@@ -252,15 +257,15 @@
         <div class="mobileMenu text-nowrap col-xsm-12">
           <ul class="mobileMenuInner">
             <li>
-              <a href="http://www.infolio.top">
+              <a href="http://infolio.top/">
                 <em class="fas fa-home"></em>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="/">
                 услуги
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="http://www.infolio.top/contacts.php">
                 контакты
@@ -284,6 +289,11 @@
             <li>
               <a href="http://www.infolio.top/calculator.php">
                 Цены
+              </a>
+            </li>
+            <li>
+              <a href="http://www.infolio.top/forget.php">
+                Забывашки
               </a>
             </li>
           </ul>

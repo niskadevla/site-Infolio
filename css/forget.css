@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.itemImagePage img:hover,
+ .itemImagePage img:active {
+  cursor: pointer;
+  transition: transform 0.5s;
+  transform: scale(2);
+  z-index: 999999;
+}

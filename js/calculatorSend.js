@@ -70,7 +70,8 @@ document.getElementById("submit").addEventListener("click", function(e) {
   let form = document.forms.calculatorSend;
   if (validate(form)) {
     sendMail(form);
-    location.reload(true);
+    form.reset();
+    // location.reload(true);
   }
 
   e.preventDefault();

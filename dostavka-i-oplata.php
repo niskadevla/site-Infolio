@@ -1,6 +1,6 @@
 <?php
   $title = "Доставка и оплата в копировальном центре &laquo;Инфолио&raquo;";
-  $keywords = "Доставка и оплата, как оплатить в кировальном центре &laquo;Инфолио&raquo;, как доставить полиграфию";
+  $keywords = "Доставка и оплата; как оплатить в копировальном центре &laquo;Инфолио&raquo; как доставить полиграфию";
   $url = "http://infolio.top/dostavka-i-oplata.php";
 
   require_once "included/header.php";
