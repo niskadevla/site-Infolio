@@ -33,6 +33,12 @@ function sendMail(form) {
   xhr2.onload = xhr2.onerror = function() {
     if (xhr2.status != 200) {
       console.log(xhr2.status + ' : ' + xhr2.statusText);
+    } else {
+       if(xhr2.response.indexOf('good:') !== -1) {
+         console.log(`response = ${xhr2.response}`);
+       } else {
+         console.log("Ответ пуст");
+       }
     }
   }
 
@@ -57,22 +63,27 @@ function validate(form) {
   //   return false;
   // } else form.mail_msg.parentNode.lastElementChild.innerHTML = "";
 
-  // if(form.mail_file.files.length < 1) {
-  //   error = "Вы не загрузили файл";
-  //   form.mail_file.parentNode.lastElementChild.innerHTML = error;
-  //   return false;
-  // } else form.mail_file.parentNode.lastElementChild.innerHTML = "";
+  if(form.mail_file.files.length < 1) {
+    error = "Вы не загрузили файл";
+    form.mail_file.parentNode.lastElementChild.innerHTML = error;
+  } else {
+
+    form.mail_file.parentNode.lastElementChild.innerHTML = "";
+    // return false;
+  }
 
   return true;
 }
 
-document.getElementById("submit").addEventListener("click", function(e) {
+document.forms.calculatorSend.addEventListener("submit", function(e) {
   let form = document.forms.calculatorSend;
+
+  e.preventDefault();
+
   if (validate(form)) {
     sendMail(form);
     form.reset();
     // location.reload(true);
   }
 
-  e.preventDefault();
 });

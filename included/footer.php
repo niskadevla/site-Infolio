@@ -72,7 +72,8 @@
                   "<link rel='shortcut icon' href='../img/fav.png' type='image/x-icon'>");
     array_push($scripts, "js/main.js",
                           "js/after_loaded.js",
-                          "js/copy.js");
+                          "js/copy.js",
+                           "/js/addLinkCalculator.js");
   ?>
 
   loadLink(<?= json_encode($links);?>, <?= json_encode($scripts);?>);

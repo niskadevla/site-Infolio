@@ -835,6 +835,28 @@ input.searchButton:hover {
   font-style: italic;
 }
 
+.content_link-calculator {
+  margin-bottom: 1em;
+  min-height: 3em;
+  position: relative;
+}
+.content_link-calculator a {
+  position: relative;
+  padding: 0.5em 1em;
+  background-color: #ebebeb;
+  border: 2px solid #aaa;
+  border-bottom: 4px solid #999;
+  border-radius: 0.75em;
+  display: inline-block;
+}
+
+.content_link-calculator a:hover,
+.content_link-calculator a:active {
+  /* display: inline-block; */
+  border-bottom-width: 3px;
+  transform: translateY(3px);
+}
+
  .sale {    /* Slider  */
    position: absolute;
    z-index: 19;

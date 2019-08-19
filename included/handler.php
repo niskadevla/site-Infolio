@@ -1,13 +1,15 @@
 <?php ## Обработчик HTML-формы.
   $error = '';
   if(empty($_POST['mail_from'])) {
-    $error = "Введите адрес отправителя";
+    $error = "error: Введите адрес отправителя";
+    echo($error);
     return;
   }
   // проверяем правильность заполнения с помощью регулярного выражения
   $pattern = "/^[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,6}$/i";
   if (!preg_match($pattern, $_POST['mail_from'])) {
-    $error = "Введите адрес в виде somebody@server.com";
+    $error = "error: Введите адрес в виде somebody@server.com";
+    echo($error);
     return;
   }
 
@@ -23,7 +25,7 @@
     $path = $_FILES['mail_file']['name'];
     if (copy($_FILES['mail_file']['tmp_name'], $path)) $picture = $path;
   }
-  $thm = $_POST['mail_subject'];
+  $thm = $_POST['mail_subject'] . ' с сайта: ' . $_SERVER['HTTP_REFERER'];
   $msg = "<strong>Ваш комментарий: </strong><br/>\n".
       $_POST['mail_msg']."\n"."
       <br/>
@@ -31,9 +33,9 @@
       $_POST['mail_table'];
 
   $mail_fro = $_POST['mail_from'];
-  $mail_to = "infolio009@gmail.com, $mail_fro";
-  // $mail_to = "infolio2009@ukr.net, $mail_fro";
-  $mail_from = 'From: '.$_POST['mail_from'];
+  // $mail_to = "infolio009@gmail.com, $mail_fro";
+  $mail_to = "infolio2009@ukr.net, infolio009@gmail.com, $mail_fro";
+  $mail_from = 'From: ' . $_POST['mail_from'];
   // Отправляем почтовое сообщение
   // if(empty($picture)) mail($mail_to, $thm, $msg, $mail_from);
   // else
@@ -44,7 +46,8 @@
     if (!empty($path)) {
       $fp = fopen($path,"r");
       if (!$fp) {
-        $error = "Файл ".$path."не может быть прочитан";
+        $error = "error: Файл ".$path."не может быть прочитан";
+        echo($error);
         return;
       }
       $file = fread($fp, filesize($path));
@@ -52,7 +55,6 @@
     }
 
     $boundary = "--".md5(uniqid(time())); // генерируем разделитель
-    // $boundary = "--777"; // генерируем разделитель
     $headers .= "MIME-Version: 1.0\n";
     $headers .="Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
     $headers .= "$from\n";
@@ -74,16 +76,15 @@
 
     if(!mail($to, $thm, $multipart, $headers))
     {
-      $error = "К сожалению, письмо не отправлено";
+      $error = "error: К сожалению, письмо не отправлено";
+      echo($error);
     }
 
     //Удаляет временные файлы с хостинга после отправки
     unlink($path);
   }
-  // Автоматический переход на главную страницу форума
-  header("Location: ".$_SERVER['PHP_SELF']);
-?>
 
-<!-- <script type="text/javascript">
-  window.location.href = "./calculator.php";
-</script> -->
+  echo('good: Отправлено');
+  // Автоматический переход на главную страницу форума
+  // header("Location: ".$_SERVER['PHP_SELF']);
+?>
