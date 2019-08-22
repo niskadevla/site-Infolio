@@ -2,16 +2,13 @@
 
 .modal-window {
   position: fixed;
-  /* transition: 1s; */
-  /* transform: translateY(); */
   width: 25vw;
+  min-width: 250px;
   min-height: 1px;
   background-color: #ebebeb;
   box-shadow: 4px 4px 7px 3px #bbb;
   border-radius: 5px;
   z-index: 999;
-  left: 30%;
-  top: 25%;
   margin: 0 auto;
   animation-name: modal-window;
   animation-duration: 1s;

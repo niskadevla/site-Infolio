@@ -70,14 +70,18 @@
 
 
 .form-services_notification,
-.form-send_notification {
+.form-send_notification,
+.form-send_error {
   font-style: italic;
   font-size: 0.8rem;
   min-height: 1px;
   width: 100%;
   text-align: left;
-  color: red;
   text-align: center;
+}
+
+.form-send_error {
+  color: red;
 }
 
 .table-services {

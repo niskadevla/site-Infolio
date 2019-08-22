@@ -816,10 +816,6 @@ input.searchButton:hover {
   min-height: 80vh;
 }
 
-.content {
-  height: 100%;
-}
-
 .content h2 {
   text-align: center;
   font-weight: bold;
@@ -836,6 +832,7 @@ input.searchButton:hover {
 }
 
 .content_link-calculator {
+  margin-top: 1em;
   margin-bottom: 1em;
   min-height: 3em;
   position: relative;
@@ -997,6 +994,7 @@ input.searchButton:hover {
   width: 50%;
   opacity: 0.1;
   height: auto;
+  filter: grayscale(100%);
   /* transform: scale(0.1); */
   /* transition:
   -webkit-transition: 0.5s ease 0.1s;
@@ -1008,16 +1006,15 @@ input.searchButton:hover {
 .width-100 {
   width: 100%!important;
   opacity: 1!important;
-  transition:
-  -webkit-transition: 21s ease;
+  -webkit-transition: 2s ease;
    -moz-transition: 2s ease;
    -o-transition: 2s ease;
    transition: 2s ease;
 }
 
 .itemImage img:hover {
+  filter: none;
   transform: scale(1.2);
-  transition:
   -webkit-transition: .5s ease 0.05s;
    -moz-transition: .5s ease 0.05s;
    -o-transition: .5s ease 0.05s;

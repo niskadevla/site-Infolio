@@ -1,5 +1,7 @@
 'use strict';
 
+var form = document.forms.calculatorSend;
+
 function tableForEmail() {
   let tableServices = document.getElementById("tableServices");
   let table = tableServices.querySelector("table");
@@ -47,43 +49,110 @@ function sendMail(form) {
   alert("Ваш заказ принят.\nВся информация отправлена вам на email");
 }
 
-function validate(form) {
+function validateMail(form) {
   let pattern = /[0-9a-z_-]+@[0-9a-z_\.]+\.[a-z]{2,6}$/i;
-  let error = "";
 
   if(pattern.test(form.mail_from.value) == false) {
-    error = "Вы ввели не верный email";
-    form.mail_from.parentNode.lastElementChild.innerHTML = error;
+    form.mail_from.parentNode.lastElementChild.innerHTML = "Вы ввели не верный email";
     return false;
   } else form.mail_from.parentNode.lastElementChild.innerHTML = "";
 
-  // if(form.mail_msg.value == "") {
-  //   error = "Вы не ввели сообщение";
-  //   form.mail_msg.parentNode.lastElementChild.innerHTML = error;
-  //   return false;
-  // } else form.mail_msg.parentNode.lastElementChild.innerHTML = "";
+  return true;
+}
 
-  if(form.mail_file.files.length < 1) {
-    error = "Вы не загрузили файл";
-    form.mail_file.parentNode.lastElementChild.innerHTML = error;
+
+//For validate files
+
+var input = form.mail_file;
+var preview = document.createElement("p");
+preview.className = "form-send_notification";
+input.insertAdjacentElement("afterEnd", preview);
+
+input.addEventListener('change', updateImageDisplay);
+
+function updateImageDisplay() {
+  while(preview.firstChild) {
+    preview.removeChild(preview.firstChild);
+  }
+
+  var curFiles = input.files;
+  if(curFiles.length === 0) {
+    var para = document.createElement('p');
+    para.textContent = 'В данный момент не выбрано ни одного файла для загрузки!';
+    preview.appendChild(para);
   } else {
+    var list = document.createElement('ol');
+    preview.appendChild(list);
 
-    form.mail_file.parentNode.lastElementChild.innerHTML = "";
-    // return false;
+    let totalFilesSize = 0;
+
+    for(var i = 0; i < curFiles.length; i++) {
+      var listItem = document.createElement('li');
+      var para = document.createElement('p');
+
+      totalFilesSize += curFiles[i].size;
+
+      para.textContent = 'Имя файла ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
+      listItem.appendChild(para);
+
+      list.appendChild(listItem);
+    }
+
+    if (!validFileSize(totalFilesSize)) {
+      var listItem = document.createElement('li');
+      var para = document.createElement('p');
+
+      para.textContent = 'Слишком большой размер файла(ов). Обновите свой выбор.';
+      listItem.appendChild(para);
+      listItem.className = "form-send_error";
+
+      list.appendChild(listItem);
+    }
+  }
+
+}
+
+function returnFileSize(number) {
+  if(number < 1024) {
+    return number + 'bytes';
+  } else if(number > 1024 && number < 1048576) {
+    return (number/1024).toFixed(1) + 'KB';
+  } else if(number > 1048576) {
+    return (number/1048576).toFixed(1) + 'MB';
+  }
+}
+
+function validFileSize(number) {
+  if ((number/1048576).toFixed(1) < 10) {
+    return true;
+  }
+
+  return false;
+}
+
+function validateFiles() {
+  let totalFilesSize = 0;
+  let curFiles = input.files;
+
+  if(curFiles.length) {
+    for(var i = 0; i < curFiles.length; i++) {
+      totalFilesSize += curFiles[i].size;
+    }
+
+    if (!validFileSize(totalFilesSize)) return false;
   }
 
   return true;
 }
 
-document.forms.calculatorSend.addEventListener("submit", function(e) {
-  let form = document.forms.calculatorSend;
+//***//
 
+document.forms.calculatorSend.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  if (validate(form)) {
+  if ( validateMail(form) && validateFiles() ) {
     sendMail(form);
     form.reset();
     // location.reload(true);
   }
-
 });

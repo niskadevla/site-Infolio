@@ -24,6 +24,14 @@ function createWindow() {
   modalWindow.appendChild(modalWindowInner);
   modalWindowInner.appendChild(modalWindowClose);
 
+  let widthModalWindow = modalWindow.offsetWidth;
+  let widthWindow = document.documentElement.clientWidth;
+  modalWindow.style.left = (widthWindow - widthModalWindow) / 2 + "px";
+
+  let heightModalWindow = modalWindow.offsetHeight;
+  let heightWindow = document.documentElement.clientHeight;
+  modalWindow.style.top = (heightWindow - heightModalWindow) / 2 + "px";
+
   document.addEventListener("click", closeWindow);
 
   function closeWindow(e) {
