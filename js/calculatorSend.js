@@ -1,6 +1,7 @@
 'use strict';
 
 var form = document.forms.calculatorSend;
+let input = form.mail_file;
 
 function tableForEmail() {
   let tableServices = document.getElementById("tableServices");
@@ -22,13 +23,19 @@ function tableForEmail() {
 
 function sendMail(form) {
   let formData = new FormData(form);
-  // добавим ещё одно поле
+  // добавим ещё одно поле - таблицу результатов расчета
   formData.append("mail_table", tableForEmail());
+  // добавим массив файлов прикрепленных
+  if(input.files.length > 1) {
+    for(let i = 0; i <  input.files.length; i++) {
+      formData.append("mail_file[]", input.files[i]);
+    }
+  }
 
   var xhr2 = new XMLHttpRequest();
 
   //Создаем POST запрос
-  xhr2.open('POST', '/included/handler.php', true);
+  xhr2.open('POST', '/upload/handler.php', true);
   // xhr2.setRequestHeader('Content-type', 'multipart/form-data');
   // xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
@@ -45,6 +52,7 @@ function sendMail(form) {
   }
 
   xhr2.send(formData);
+
   // form.lastElementChild.innerHTML = "Ваш заказ отправлен";
   alert("Ваш заказ принят.\nВся информация отправлена вам на email");
 }
@@ -63,8 +71,7 @@ function validateMail(form) {
 
 //For validate files
 
-var input = form.mail_file;
-var preview = document.createElement("p");
+let preview = document.createElement("p");
 preview.className = "form-send_notification";
 input.insertAdjacentElement("afterEnd", preview);
 
@@ -153,6 +160,6 @@ document.forms.calculatorSend.addEventListener("submit", function(e) {
   if ( validateMail(form) && validateFiles() ) {
     sendMail(form);
     form.reset();
-    // location.reload(true);
+    location.reload(true);
   }
 });
