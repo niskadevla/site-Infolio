@@ -86,7 +86,7 @@
             <div class="form-group row">
               <label class="col-12 col-md-4" for="mail_msg"> Прикрепите файл: </label>
               <input type="file" class="col-12 col-md-8" id="mail_file" name="mail_file" multiple>
-              <span class="form-send_notification">Файлы должны весить не более 10 Мб</span>
+              <span class="form-send_notification">Файлы должны весить не более 50 МБ</span>
               <div class="form-send_notification">
               </div>
             </div>

@@ -97,8 +97,8 @@
     <div class="container">
       <div class="header  row">
         <div class="logo col-sm-auto text-nowrap">
-          <a href="http://www.infolio.top">
-            <img src="http://www.infolio.top/img/fav.png" alt="Копицентр Инфолио"
+          <a href="http://infolio.top">
+            <img src="http://infolio.top/img/fav.png" alt="Копицентр Инфолио"
               title="Копировальный центр infolio.top">
             <h1>Копицентр
               <span class="text-uppercase ">

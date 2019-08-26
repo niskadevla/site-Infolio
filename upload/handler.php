@@ -36,8 +36,6 @@
 
 //***
 
-  print_r($_FILES);
-
   $error = '';
   if(empty($_POST['mail_from'])) {
     $error = "error: Введите адрес отправителя";
@@ -63,12 +61,15 @@
   for($i = 0; $i < count( $_FILES['mail_file']['name'] ); $i++) {
     if ( !empty($_FILES['mail_file']['tmp_name']) ) {
       // Загружаем файл
+      $uploads_dir = '/home/infoli03/infolio.top/www/download';
       if (count( $_FILES['mail_file']['name']) == 1) {
-        $path = $_FILES['mail_file']['name'];
-        if (copy($_FILES['mail_file']['tmp_name'], $path)) $picture = $path;
+        $path = basename($_FILES['mail_file']['name']);
+        if ( (copy($_FILES['mail_file']['tmp_name'], $path)) &&
+             (move_uploaded_file($_FILES['mail_file']['tmp_name'], "$uploads_dir/$path")) ) $picture = "$uploads_dir/$path";
       } else {
-        $path = $_FILES['mail_file']['name'][$i];
-        if (copy($_FILES['mail_file']['tmp_name'][$i], $path)) array_push($picture, $path);
+        $path = basename($_FILES['mail_file']['name'][$i]);
+        if ((copy($_FILES['mail_file']['tmp_name'][$i], $path)) &&
+            (move_uploaded_file($_FILES['mail_file']['tmp_name'][$i], "$uploads_dir/$path"))) array_push($picture, "$uploads_dir/$path");
       }
     }
   }
@@ -90,31 +91,31 @@
 
   // Вспомогательная функция для отправки почтового сообщения с вложением
   function send_mail($to, $thm, $html, $path, $from) {
-    $files = [];
-    if (!empty($path)) {
-      for($i = 0; $i < count($path); $i++) {
-        if (count($path) == 1) {
-          $fp = fopen($path,"r");
-          if (!$fp) {
-            $error = "error: Файл ".$path."не может быть прочитан";
-            echo($error);
-            return;
-          }
-          $files = fread($fp, filesize($path));
-          fclose($fp);
-        } else {
-          $fp = fopen($path[$i],"r");
-          if (!$fp) {
-            $error = "error: Файл ".$path[$i]."не может быть прочитан";
-            echo($error);
-            return;
-          }
-          $file = fread($fp, filesize($path[$i]));
-          array_push( $files, $file );
-          fclose($fp);
-        }
-      }
-    }
+    // $files = [];
+    // if (!empty($path)) {
+    //   for($i = 0; $i < count($path); $i++) {
+    //     if (count($path) == 1) {
+    //       $fp = fopen($path,"r");
+    //       if (!$fp) {
+    //         $error = "error: Файл ".$path."не может быть прочитан";
+    //         echo($error);
+    //         return;
+    //       }
+    //       $files = fread($fp, filesize($path));
+    //       fclose($fp);
+    //     } else {
+    //       $fp = fopen($path[$i],"r");
+    //       if (!$fp) {
+    //         $error = "error: Файл ".$path[$i]."не может быть прочитан";
+    //         echo($error);
+    //         return;
+    //       }
+    //       $file = fread($fp, filesize($path[$i]));
+    //       array_push( $files, $file );
+    //       fclose($fp);
+    //     }
+    //   }
+    // }
 
     $boundary = "--".md5(uniqid(time())); // генерируем разделитель
     $headers .= "MIME-Version: 1.0\n";
@@ -133,10 +134,10 @@
         // $message_part .= "Content-Type: $_FILES['mail_file']['type']\n";
         $message_part .= "Content-Transfer-Encoding: base64\n";
         if (count($path) == 1) {
-          $message_part .= "Content-Disposition: attachment; filename = \"".$path."\"\n";
-          $message_part .= chunk_split(base64_encode($files), 70, "\n")."\n";
+          $message_part .= "Content-Disposition: attachment; filename = \"".basename($path)."\"\n";
+          // $message_part .= chunk_split(base64_encode($files), 70, "\n")."\n";
         } else {
-          $message_part .= "Content-Disposition: attachment; filename = \"".$path[$i]."\"\n";
+          $message_part .= "Content-Disposition: attachment; filename = \"".basename($path[$i])."\"\n";
           $message_part .= chunk_split(base64_encode($files[$i]), 70, "\n")."\n";
           $message_part .= "--{$boundary}\n";
         }
@@ -152,12 +153,12 @@
     }
 
     //Удаляет временные файлы с хостинга после отправки
-    // if (!empty($path) && count($path) == 1) unlink($path);
-    // elseif (!empty($path)) {
-    //   foreach ($path as $value) {
-    //     unlink($value);
-    //   }
-    // }
+    if (!empty($path) && count($path) == 1) unlink(basename($path));
+    elseif (!empty($path)) {
+      foreach ($path as $value) {
+        unlink(basename($value));
+      }
+    }
 
   }
 

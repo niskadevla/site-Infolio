@@ -130,7 +130,7 @@ function returnFileSize(number) {
 }
 
 function validFileSize(number) {
-  if ((number/1048576).toFixed(1) < 10) {
+  if ((number/1048576).toFixed(1) < 50) {
     return true;
   }
 
