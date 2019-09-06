@@ -1,6 +1,7 @@
 'use strict';
 
 var form = document.forms.calculatorSend;
+let input = form.mail_file;
 
 function tableForEmail() {
   let tableServices = document.getElementById("tableServices");
@@ -22,31 +23,42 @@ function tableForEmail() {
 
 function sendMail(form) {
   let formData = new FormData(form);
-  // добавим ещё одно поле
+  // добавим ещё одно поле - таблицу результатов расчета
   formData.append("mail_table", tableForEmail());
+  // добавим массив файлов прикрепленных
+  if(input.files.length > 1) {
+    for(let i = 0; i <  input.files.length; i++) {
+      formData.append("mail_file[]", input.files[i]);
+    }
+  }
 
   var xhr2 = new XMLHttpRequest();
 
   //Создаем POST запрос
-  xhr2.open('POST', '/included/handler.php', true);
+  xhr2.open('POST', '/upload/handler.php', true);
   // xhr2.setRequestHeader('Content-type', 'multipart/form-data');
   // xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
   xhr2.onload = xhr2.onerror = function() {
     if (xhr2.status != 200) {
       console.log(xhr2.status + ' : ' + xhr2.statusText);
+      form.lastElementChild.innerHTML = xhr2.status + ' : ' + xhr2.statusText;
     } else {
-       if(xhr2.response.indexOf('good:') !== -1) {
+       if(xhr2.response.indexOf('good') !== -1) {
          console.log(`response = ${xhr2.response}`);
+         alert("Ваш заказ принят.\nВся информация отправлена вам на email");
+         form.reset();
+         location.reload(true);
        } else {
-         console.log("Ответ пуст");
+         form.lastElementChild.innerHTML = `К сожалению файлы не отправлены! ${xhr2.response}`;
+         console.log(`response = ${xhr2.response}`);
        }
     }
   }
 
   xhr2.send(formData);
-  // form.lastElementChild.innerHTML = "Ваш заказ отправлен";
-  alert("Ваш заказ принят.\nВся информация отправлена вам на email");
+
+  form.lastElementChild.innerHTML = "<strong>Идет загрузка...</strong>";
 }
 
 function validateMail(form) {
@@ -63,8 +75,7 @@ function validateMail(form) {
 
 //For validate files
 
-var input = form.mail_file;
-var preview = document.createElement("p");
+let preview = document.createElement("p");
 preview.className = "form-send_notification";
 input.insertAdjacentElement("afterEnd", preview);
 
@@ -84,13 +95,9 @@ function updateImageDisplay() {
     var list = document.createElement('ol');
     preview.appendChild(list);
 
-    let totalFilesSize = 0;
-
     for(var i = 0; i < curFiles.length; i++) {
       var listItem = document.createElement('li');
       var para = document.createElement('p');
-
-      totalFilesSize += curFiles[i].size;
 
       para.textContent = 'Имя файла ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
       listItem.appendChild(para);
@@ -98,7 +105,17 @@ function updateImageDisplay() {
       list.appendChild(listItem);
     }
 
-    if (!validFileSize(totalFilesSize)) {
+    // Общее количество файлов
+    var listItem = document.createElement('li');
+    var para = document.createElement('p');
+
+    para.textContent = 'Общий размер файлов = ' + returnFileSize(getTotalFilesSize()) + '.';
+    listItem.appendChild(para);
+
+    list.appendChild(listItem);
+    // ***
+
+    if (!validFileSize(getTotalFilesSize())) {
       var listItem = document.createElement('li');
       var para = document.createElement('p');
 
@@ -123,14 +140,14 @@ function returnFileSize(number) {
 }
 
 function validFileSize(number) {
-  if ((number/1048576).toFixed(1) < 10) {
+  if ((number/1048576).toFixed(1) < 20) {
     return true;
   }
 
   return false;
 }
 
-function validateFiles() {
+function getTotalFilesSize() {
   let totalFilesSize = 0;
   let curFiles = input.files;
 
@@ -139,10 +156,20 @@ function validateFiles() {
       totalFilesSize += curFiles[i].size;
     }
 
-    if (!validFileSize(totalFilesSize)) return false;
+    return totalFilesSize;
   }
+}
 
-  return true;
+function validateFiles() {
+  let curFiles = input.files;
+
+  return !curFiles.length ? true : validFileSize(getTotalFilesSize()) ? true : false;
+
+  // if(curFiles.length) {
+  //   if (!validFileSize(getTotalFilesSize())) return false;
+  // }
+  //
+  // return true;
 }
 
 //***//
@@ -152,7 +179,5 @@ document.forms.calculatorSend.addEventListener("submit", function(e) {
 
   if ( validateMail(form) && validateFiles() ) {
     sendMail(form);
-    form.reset();
-    // location.reload(true);
   }
 });

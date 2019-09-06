@@ -16,6 +16,7 @@
   <meta itemprop="name" content="<?=$title?>">
   <meta itemprop="url" content=<?=$url?>>
   <meta itemprop="image" content="http://www.infolio.top/img/fasad.jpg">
+  <meta name="author" content="Denis Bielishev">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117396077-3"></script>
@@ -97,8 +98,8 @@
     <div class="container">
       <div class="header  row">
         <div class="logo col-sm-auto text-nowrap">
-          <a href="http://www.infolio.top">
-            <img src="http://www.infolio.top/img/fav.png" alt="Копицентр Инфолио"
+          <a href="http://infolio.top">
+            <img src="http://infolio.top/img/fav.png" alt="Копицентр Инфолио"
               title="Копировальный центр infolio.top">
             <h1>Копицентр
               <span class="text-uppercase ">
@@ -147,19 +148,19 @@
 
         <div class="schedule col-md-auto order-md-last">
           <ul>
-            <!-- <li>График работы:</li>
+            <li>График работы:</li>
             <li>Пн-Пт: 8.30 - 19.30</li>
-            <li>Сб - Вс: 10.00 - 18.00</li> -->
+            <li>Сб - Вс: 10.00 - 18.00</li>
             <!-- <li>28.04.19(Пасха) - ВЫХОДНОЙ!</li> -->
             <!-- <li>График в период праздников:</li>
             <li>16 июня - работаем с 10.00 до 18.00</li>
             <li>Остальные дни по обычному графику</li> -->
             <!-- <li>Мы работаем в обычном режиме</li> -->
 
-            <li>График работы летний:</li>
+            <!-- <li>График работы летний:</li>
             <li>(с 26 июня по 1 сентября)</li>
             <li>Пн - Пт: 8.30 - 17.00</li>
-            <li>Сб - Вс: 11.00 - 16.00</li>
+            <li>Сб - Вс: 11.00 - 16.00</li> -->
             <!-- <li>28 июня - работаем по графику</li>
             <li>все остальные дни - работаем по летнему графику</li> -->
 

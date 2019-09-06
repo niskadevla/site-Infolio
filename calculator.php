@@ -74,6 +74,13 @@
               </div>
             </div>
             <div class="form-group row">
+              <label class="col-12 col-md-4" for="mail_tel"> Ваш тел: </label>
+              <input type="tel" class="col-12 col-md-8" id="mail_tel" name="mail_tel" placeholder="+380664182292">
+              <div class="form-send_notification">
+                Введите Ваш телефон для связи.
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="col-12 col-md-4" for="mail_subject"> Тема: </label>
               <input type="text" class="col-12 col-md-8" id="mail_subject" name="mail_subject" value="Просчет цены в калькуляторе">
             </div>
@@ -86,7 +93,7 @@
             <div class="form-group row">
               <label class="col-12 col-md-4" for="mail_msg"> Прикрепите файл: </label>
               <input type="file" class="col-12 col-md-8" id="mail_file" name="mail_file" multiple>
-              <span class="form-send_notification">Файлы должны весить не более 10 Мб</span>
+              <span class="form-send_notification">Файлы должны весить не более 20 МБ</span>
               <div class="form-send_notification">
               </div>
             </div>
